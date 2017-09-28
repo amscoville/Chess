@@ -23,6 +23,3 @@
 #board > div:nth-child(even) > div:nth-child(odd) {
 	background-color: black;
 }
-
-
-
