@@ -1,6 +1,8 @@
 import Piece from './piece';
 import BoardState from '../board/boardState';
 
+const $ = require('jquery');
+
 
 export default class Rook extends Piece {
 	constructor(color, row, col) {
@@ -14,7 +16,9 @@ export default class Rook extends Piece {
 		for (let i = 0; i < 8; i++) {
 			newCol++;
 			if (BoardState.describeSquare(row, newCol) === 'empty' || BoardState.describeSquare(row, newCol) === 'enemy') {
-				targets.push(`#${row}${newCol}`);
+				const square = $(`#${row}${newCol}`);
+				// console.log(square);
+				targets.push(square);
 			}
 		}
 		return targets;

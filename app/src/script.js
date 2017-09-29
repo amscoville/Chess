@@ -7,7 +7,15 @@ const $ = require('jquery');
 $(document).ready(() => {
 	createBoard();
 	displayPiece();
+	$('#board > div > div').click(handleSquareClick);
 });
+
+function handleSquareClick(event) {
+	const coordinates = getSquareData(event);
+	const newRow = coordinates[0];
+	const newCol = coordinates[1];
+	BoardState.state[newRow][newCol].getTargets();
+}
 
 function createBoard() {
 	for (let i = 0; i < 8; i++) {
@@ -31,4 +39,9 @@ function displayPiece() {
 			}
 		}
 	}
+}
+
+function getSquareData(event) {
+	const id = event.currentTarget.id;
+	return id.split('');
 }
