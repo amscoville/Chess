@@ -73,7 +73,7 @@ export default class Board {
 	describeSquare(row, col) {
 		if (!this.isOnTheBoard(row, col)) {
 			return 'invalid';
-		} else if (!this.pieceOnSpave(row, col)) {
+		} else if (!this.pieceOnSpace(row, col)) {
 			return 'empty';
 		} else if (this.isEnemy(row, col)) {
 			return 'enemy';

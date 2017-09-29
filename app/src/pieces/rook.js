@@ -1,7 +1,7 @@
 import Piece from './piece';
 import BoardState from '../board/boardState';
 
-const $ = require('jquery');
+// const $ = require('jquery');
 
 
 export default class Rook extends Piece {
@@ -36,7 +36,7 @@ export default class Rook extends Piece {
 
 	addToTargets(row, col) {
 		if (BoardState.describeSquare(row, col) === 'empty' || BoardState.describeSquare(row, col) === 'enemy') {
-			const square = $(`#${row}${col}`);
+			const square = `${row}${col}`;
 			this.targets.push(square);
 		}
 	}
