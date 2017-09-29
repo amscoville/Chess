@@ -12,9 +12,15 @@ $(document).ready(() => {
 
 function handleSquareClick(event) {
 	const coordinates = getSquareData(event);
-	const newRow = coordinates[0];
-	const newCol = coordinates[1];
-	BoardState.state[newRow][newCol].getTargets();
+	const row = coordinates[0];
+	const col = coordinates[1];
+	const targets = BoardState.state[row][col].getTargets();
+	if ($(`#${row}${col}`).hasClass('highlight')) {
+		BoardState.state[row][col].move(row, col);
+	} else {
+		$(`#${row}${col}`).addClass('originalSquare');
+		highlightTargets(targets, row, col);
+	}
 }
 
 function createBoard() {
@@ -44,4 +50,15 @@ function displayPiece() {
 function getSquareData(event) {
 	const id = event.currentTarget.id;
 	return id.split('');
+}
+
+function highlightTargets(arr, row, col) {
+	$('.highlight').removeClass('highlight');
+	$(`#${row}${col}`).addClass('highlight');
+	for (let i = 0; i < arr.length; i++) {
+		const newCoords = arr[i].split('');
+		const targRow = newCoords[0];
+		const targCol = newCoords[1];
+		$(`#${targRow}${targCol}`).addClass('highlight');
+	}
 }

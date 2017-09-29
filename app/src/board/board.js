@@ -5,6 +5,8 @@ import Queen from '../pieces/queen';
 import King from '../pieces/king';
 import Pawn from '../pieces/pawn';
 
+const $ = require('jquery');
+
 export default class Board {
 	constructor() {
 		this.state = [
@@ -54,9 +56,20 @@ export default class Board {
 			]
 		];
 		this.turn = 'white';
+		this.captured = [];
 	}
-	// move(){
-	// }
+
+	move(row, col) { // input is the row and column of a clicked square that is highlighted
+		const piece = $('.originalSquare').html;
+		const targetSpot = $(`#${row}${col}`);
+		if (piece.html.color !== targetSpot.html.color) {
+			this.captured = targetSpot.html;
+		}
+		targetSpot.html(piece);
+		$('.originalSquare').html('');
+		piece.removeClass('originalSquare');
+	}
+
 	describeSquare(row, col) {
 		if (!this.isOnTheBoard(row, col)) {
 			return 'invalid';
