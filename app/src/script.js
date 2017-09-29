@@ -14,12 +14,10 @@ function handleSquareClick(event) {
 	const coordinates = getSquareData(event);
 	const row = coordinates[0];
 	const col = coordinates[1];
-	const targets = BoardState.state[row][col].getTargets(row, col);
-	// targets is an array of objects, so i need to either make it an array of id's or
-	// find out how to pull the id from each object as I loop through the array
 	if ($(`#${row}${col}`).hasClass('highlight')) {
-		BoardState.state[row][col].move(row, col);
+		BoardState.move(row, col);
 	} else {
+		const targets = BoardState.state[row][col].getTargets(row, col);
 		$(`#${row}${col}`).addClass('originalSquare');
 		highlightTargets(targets, row, col);
 	}

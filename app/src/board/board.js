@@ -60,13 +60,13 @@ export default class Board {
 	}
 
 	move(row, col) { // input is the row and column of a clicked square that is highlighted
-		const piece = $('.originalSquare').html;
+		const piece = $('.originalSquare');
 		const targetSpot = $(`#${row}${col}`);
-		if (piece.html.color !== targetSpot.html.color) {
+		if (piece.color === 'white') { // change to piece.color !== this.turn after implementing turns
 			this.captured = targetSpot.html;
 		}
-		targetSpot.html(piece);
-		$('.originalSquare').html('');
+		targetSpot.html(piece.html);
+		piece.html('');
 		piece.removeClass('originalSquare');
 	}
 
@@ -90,7 +90,8 @@ export default class Board {
 	}
 
 	isEnemy(row, col) {
-		return this.state[row][col].color !== this.turn;
+		return this.state[row][col].color === 'white';
+		// return this.state[row][col].color !== this.turn;
 	}
 }
 

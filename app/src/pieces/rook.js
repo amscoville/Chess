@@ -13,31 +13,41 @@ export default class Rook extends Piece {
 
 	getTargets(row, col) {
 		this.targets = [];
-		let newCol = col;
-		let newRow = row;
-		for (let i = col; i < 8; i++) {
+		const origCol = Number(col);
+		const origRow = Number(row);
+		let newCol = Number(col);
+		let newRow = Number(row);
+		for (let i = origCol + 1; i < 8; i++) {
 			newCol++;
-			this.addToTargets(row, newCol);
+			const newColStr = String(newCol);
+			this.addToTargets(row, newColStr);
 		}
-		for (let i = col; i >= 0; i--) {
+		for (let j = origCol - 1; j >= 0; j--) {
 			newCol--;
-			this.addToTargets(row, newCol);
+			const newColStr = String(newCol);
+			this.addToTargets(row, newColStr);
 		}
-		for (let i = row; i < 8; i++) {
+		for (let k = origRow + 1; k < 8; k++) {
 			newRow++;
-			this.addToTargets(newRow, col);
+			const newRowStr = String(newRow);
+			this.addToTargets(newRowStr, col);
 		}
-		for (let i = row; i >= 0; i--) {
+		for (let l = origRow - 1; l >= 0; l--) {
 			newRow--;
-			this.addToTargets(newRow, col);
+			const newRowStr = String(newRow);
+			this.addToTargets(newRowStr, col);
 		}
 		return this.targets;
 	}
 
 	addToTargets(row, col) {
-		if (BoardState.describeSquare(row, col) === 'empty' || BoardState.describeSquare(row, col) === 'enemy') {
+		if (BoardState.describeSquare(row, col) === 'empty') {
 			const square = `${row}${col}`;
 			this.targets.push(square);
+		} else if (BoardState.describeSquare(row, col) === 'enemy') {
+			const square = `${row}${col}`;
+			this.targets.push(square);
+			// stop it from going any further - can only move as far as first enemy's location
 		}
 	}
 }
