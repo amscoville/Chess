@@ -57,4 +57,27 @@ export default class Board {
 	}
 	// move(){
 	// }
+	describeSquare(row, col) {
+		if (!this.isOnTheBoard(row, col)) {
+			return 'invalid';
+		} else if (!this.pieceOnSpave(row, col)) {
+			return 'empty';
+		} else if (this.isEnemy(row, col)) {
+			return 'enemy';
+		}
+		return 'ally';
+	}
+
+	isOnTheBoard(row, col) {
+		return (row >= 0 && row < 8 && col >= 0 && col < 8);
+	}
+
+	pieceOnSpace(row, col) {
+		return !!this.state[row][col];
+	}
+
+	isEnemy(row, col) {
+		return this.state[row][col].color !== this.turn;
+	}
 }
+

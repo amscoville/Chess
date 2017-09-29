@@ -24,7 +24,7 @@ function createBoard() {
 }
 
 function displayPiece() {
-	for (let i = 0; i < 8; i++) {
+	for (let i = 0; i < BoardState.state.length; i++) {
 		for (let j = 0; j < BoardState.state[i].length; j++) {
 			if (BoardState.state[i][j]) {
 				$(`#${BoardState.state[i][j].row}${BoardState.state[i][j].col}`).html(BoardState.state[i][j].img);
