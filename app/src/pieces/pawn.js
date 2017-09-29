@@ -1,5 +1,5 @@
 import Piece from './piece';
-import BoardState from '../board/boardState';
+// import BoardState from '../board/boardState';
 
 
 export default class Pawn extends Piece {

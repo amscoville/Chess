@@ -1,4 +1,3 @@
-import Piece from '../pieces/piece';
 import Rook from '../pieces/rook';
 import Knight from '../pieces/knight';
 import Bishop from '../pieces/bishop';
@@ -34,14 +33,14 @@ export default class Board {
 			new Array(8),
 			new Array(8),
 			[
-				new Pawn('black', 6, 0),
-				new Pawn('black', 6, 1),
-				new Pawn('black', 6, 2),
-				new Pawn('black', 6, 3),
-				new Pawn('black', 6, 4),
-				new Pawn('black', 6, 5),
-				new Pawn('black', 6, 6),
-				new Pawn('black', 6, 7)
+				new Pawn('white', 6, 0),
+				new Pawn('white', 6, 1),
+				new Pawn('white', 6, 2),
+				new Pawn('white', 6, 3),
+				new Pawn('white', 6, 4),
+				new Pawn('white', 6, 5),
+				new Pawn('white', 6, 6),
+				new Pawn('white', 6, 7)
 			],
 			[
 				new Rook('white', 7, 0),

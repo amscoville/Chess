@@ -6,6 +6,7 @@ const $ = require('jquery');
 
 $(document).ready(() => {
 	createBoard();
+	displayPiece();
 });
 
 function createBoard() {
@@ -19,5 +20,15 @@ function createBoard() {
 			$(row).append(square);
 		}
 		$('#board').append(row);
+	}
+}
+
+function displayPiece() {
+	for (let i = 0; i < 8; i++) {
+		for (let j = 0; j < BoardState.state[i].length; j++) {
+			if (BoardState.state[i][j]) {
+				$(`#${BoardState.state[i][j].row}${BoardState.state[i][j].col}`).html(BoardState.state[i][j].img);
+			}
+		}
 	}
 }
