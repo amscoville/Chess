@@ -4,8 +4,11 @@ import Bishop from '../pieces/bishop';
 import Queen from '../pieces/queen';
 import King from '../pieces/king';
 import Pawn from '../pieces/pawn';
+import BoardState from '../board/boardState';
 
 const $ = require('jquery');
+
+// let isEnemy = false;
 
 export default class Board {
 	constructor() {
@@ -61,14 +64,18 @@ export default class Board {
 
 	move(row, col) { // input is the row and column of a clicked square that is highlighted
 		const piece = $('.originalSquare');
-		const pieceHTML = piece.html;
+		const pieceID = piece.attr('id');
+		const pieceRow = pieceID[0];
+		const pieceCol = pieceID[1];
+		const pieceImg = BoardState.state[pieceRow][pieceCol].img;
 		const targetSpot = $(`#${row}${col}`);
 		if (piece.color === 'white') { // change to piece.color !== this.turn after implementing turns
 			this.captured = targetSpot.html;
 		}
-		targetSpot.html(pieceHTML); // something in here throws error "this.empty is not a function"
+		targetSpot.html(pieceImg);
 		piece.html('');
 		piece.removeClass('originalSquare');
+		$('div').removeClass('highlight');
 	}
 
 	describeSquare(row, col) {
@@ -91,7 +98,7 @@ export default class Board {
 	}
 
 	isEnemy(row, col) {
-		return this.state[row][col].color === 'white';
+		return this.state[row][col].color === 'white'; // change after implementing turns
 		// return this.state[row][col].color !== this.turn;
 	}
 }

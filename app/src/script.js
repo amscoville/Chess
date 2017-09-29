@@ -39,13 +39,9 @@ function createBoard() {
 
 function displayPiece() {
 	for (let i = 0; i < 8; i++) {
-		if (i === 1) {
-			BoardState.state[i] = new Array(8);
-		} else {
-			for (let j = 0; j < BoardState.state[i].length; j++) {
-				if (BoardState.state[i][j]) {
-					$(`#${BoardState.state[i][j].row}${BoardState.state[i][j].col}`).html(BoardState.state[i][j].img);
-				}
+		for (let j = 0; j < BoardState.state[i].length; j++) {
+			if (BoardState.state[i][j]) {
+				$(`#${BoardState.state[i][j].row}${BoardState.state[i][j].col}`).html(BoardState.state[i][j].img);
 			}
 		}
 	}

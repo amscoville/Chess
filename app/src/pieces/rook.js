@@ -11,6 +11,7 @@ export default class Rook extends Piece {
 		this.targets = [];
 	}
 
+	// get this to stop looping once it hits an enemy or ally, so it can't highlight beyond that space
 	getTargets(row, col) {
 		this.targets = [];
 		const origCol = Number(col);
@@ -25,6 +26,7 @@ export default class Rook extends Piece {
 		for (let j = origCol - 1; j >= 0; j--) {
 			newCol--;
 			const newColStr = String(newCol);
+
 			this.addToTargets(row, newColStr);
 		}
 		for (let k = origRow + 1; k < 8; k++) {
