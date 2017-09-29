@@ -61,11 +61,12 @@ export default class Board {
 
 	move(row, col) { // input is the row and column of a clicked square that is highlighted
 		const piece = $('.originalSquare');
+		const pieceHTML = piece.html;
 		const targetSpot = $(`#${row}${col}`);
 		if (piece.color === 'white') { // change to piece.color !== this.turn after implementing turns
 			this.captured = targetSpot.html;
 		}
-		targetSpot.html(piece.html);
+		targetSpot.html(pieceHTML); // something in here throws error "this.empty is not a function"
 		piece.html('');
 		piece.removeClass('originalSquare');
 	}
