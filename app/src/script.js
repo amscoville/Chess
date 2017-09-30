@@ -16,9 +16,11 @@ function handleSquareClick(event) {
 	const col = coordinates[1];
 	if ($(`#${row}${col}`).hasClass('highlight')) {
 		BoardState.move(row, col);
+		$('div').removeClass('highlight');
 	} else {
-		const targets = BoardState.state[row][col].getTargets(row, col);
+		$('div').removeClass('originalSquare');
 		$(`#${row}${col}`).addClass('originalSquare');
+		const targets = BoardState.state[row][col].getTargets(row, col);
 		highlightTargets(targets, row, col);
 	}
 }

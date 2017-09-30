@@ -3,6 +3,8 @@ import BoardState from '../board/boardState';
 
 // const $ = require('jquery');
 
+let isEnemy = false;
+let isAlly = false;
 
 export default class Rook extends Piece {
 	constructor(color, row, col) {
@@ -26,13 +28,15 @@ export default class Rook extends Piece {
 		for (let j = origCol - 1; j >= 0; j--) {
 			newCol--;
 			const newColStr = String(newCol);
-
 			this.addToTargets(row, newColStr);
 		}
 		for (let k = origRow + 1; k < 8; k++) {
 			newRow++;
 			const newRowStr = String(newRow);
 			this.addToTargets(newRowStr, col);
+			if (isEnemy || !isAlly) {
+				k = 8;
+			}
 		}
 		for (let l = origRow - 1; l >= 0; l--) {
 			newRow--;
@@ -49,7 +53,7 @@ export default class Rook extends Piece {
 		} else if (BoardState.describeSquare(row, col) === 'enemy') {
 			const square = `${row}${col}`;
 			this.targets.push(square);
-			// stop it from going any further - can only move as far as first enemy's location
+			isEnemy = true;
 		}
 	}
 }

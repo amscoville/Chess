@@ -75,7 +75,6 @@ export default class Board {
 		targetSpot.html(pieceImg);
 		piece.html('');
 		piece.removeClass('originalSquare');
-		$('div').removeClass('highlight');
 	}
 
 	describeSquare(row, col) {
