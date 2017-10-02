@@ -4,7 +4,7 @@ import BoardState from '../board/boardState';
 // const $ = require('jquery');
 
 let isEnemy = false;
-let isAlly = false;
+// let isAlly = false;
 
 export default class Rook extends Piece {
 	constructor(color, row, col) {
@@ -18,42 +18,86 @@ export default class Rook extends Piece {
 		this.targets = [];
 		const origCol = Number(col);
 		const origRow = Number(row);
-		let newCol = Number(col);
-		let newRow = Number(row);
-		for (let i = origCol + 1; i < 8; i++) {
-			newCol++;
-			const newColStr = String(newCol);
-			this.addToTargets(row, newColStr);
-		}
-		for (let j = origCol - 1; j >= 0; j--) {
-			newCol--;
-			const newColStr = String(newCol);
-			this.addToTargets(row, newColStr);
-		}
-		for (let k = origRow + 1; k < 8; k++) {
-			newRow++;
-			const newRowStr = String(newRow);
-			this.addToTargets(newRowStr, col);
-			if (isEnemy || !isAlly) {
-				k = 8;
-			}
-		}
-		for (let l = origRow - 1; l >= 0; l--) {
-			newRow--;
-			const newRowStr = String(newRow);
-			this.addToTargets(newRowStr, col);
-		}
+		const colFwdTargs = this.checkColForward(origRow, origCol);
+		const colBackTargs = this.checkColBackward(origRow, origCol);
+		const rowFwdTargs = this.checkRowForward(origRow, origCol);
+		const rowBackTargs = this.checkRowBackward(origRow, origCol);
+		this.targets.push(...colFwdTargs, ...colBackTargs, ...rowFwdTargs, ...rowBackTargs);
 		return this.targets;
 	}
 
-	addToTargets(row, col) {
+	isTarget(row, col) {
 		if (BoardState.describeSquare(row, col) === 'empty') {
-			const square = `${row}${col}`;
-			this.targets.push(square);
+			return true;
 		} else if (BoardState.describeSquare(row, col) === 'enemy') {
-			const square = `${row}${col}`;
-			this.targets.push(square);
 			isEnemy = true;
+			return true;
+		} else if (BoardState.describeSquare(row, col) === 'ally' || BoardState.describeSquare(row, col) === 'invalid') {
+			return false;
+		} else {
+			return false;
 		}
 	}
+
+	addValidSquare(row, col, square) {
+		const arr = [];
+		if (this.isTarget(row, col) && !isEnemy) {
+			arr.push(square);
+		} else if (this.isTarget(row, col) && isEnemy) {
+			arr.push(square);
+			return arr;
+		} else {
+			return arr;
+		}
+		return arr;
+	}
+
+	checkColForward(row, col) {
+		let newCol = col;
+		let arr = [];
+		for (let i = col + 1; i < 8; i++) {
+			newCol++;
+			const newColStr = String(newCol);
+			const square = `${row}${newColStr}`;
+			arr = this.addValidSquare(row, newColStr, square);
+		}
+		return arr;
+	}
+
+	checkColBackward(row, col) {
+		let newCol = col;
+		let arr = [];
+		for (let i = col - 1; i >= 0; i--) {
+			newCol--;
+			const newColStr = String(newCol);
+			const square = `${row}${newColStr}`;
+			arr = this.addValidSquare(row, newColStr, square);
+		}
+		return arr;
+	}
+
+	checkRowForward(row, col) {
+		let arr = [];
+		let newRow = row;
+		for (let i = row + 1; i < 8; i++) {
+			newRow++;
+			const newRowStr = String(newRow);
+			const square = `${newRowStr}${col}`;
+			arr = this.addValidSquare(newRowStr, col, square);
+		}
+		return arr;
+	}
+
+	checkRowBackward(row, col) {
+		let arr = [];
+		let newRow = row;
+		for (let i = row - 1; i >= 0; i--) {
+			newRow--;
+			const newRowStr = String(newRow);
+			const square = `${newRowStr}${col}`;
+			arr = this.addValidSquare(newRowStr, col, square);
+		}
+		return arr;
+	}
 }
+
