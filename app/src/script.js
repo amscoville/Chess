@@ -61,10 +61,6 @@ function highlightTargets(arr, row, col) {
 	$('.highlight').removeClass('highlight');
 	$(`#${row}${col}`).addClass('highlight');
 	for (let i = 0; i < arr.length; i++) {
-		const elem = arr[i];
-		const newCoords = elem.split('');
-		const targRow = newCoords[0];
-		const targCol = newCoords[1];
-		$(`#${targRow}${targCol}`).addClass('highlight');
+		$(`#${arr[i]}`).addClass('highlight');
 	}
 }

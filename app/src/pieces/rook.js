@@ -21,7 +21,19 @@ export default class Rook extends Piece {
 		const colBackTargs = this.checkColBackward(origRow, origCol);
 		const rowFwdTargs = this.checkRowForward(origRow, origCol);
 		const rowBackTargs = this.checkRowBackward(origRow, origCol);
-		this.targets.push(...colFwdTargs, ...colBackTargs, ...rowFwdTargs, ...rowBackTargs);
+		if (colFwdTargs !== []) {
+			this.targets.push(...colFwdTargs);
+		}
+		if (colBackTargs !== []) {
+			this.targets.push(...colBackTargs);
+		}
+		if (rowFwdTargs !== []) {
+			this.targets.push(...rowFwdTargs);
+		}
+		if (rowBackTargs !== []) {
+			this.targets.push(...rowBackTargs);
+		}
+		console.log(this.targets);
 		return this.targets;
 	}
 
@@ -41,14 +53,13 @@ export default class Rook extends Piece {
 		}
 	}
 
-	addValidSquare(row, col, square) {
-		const arr = [];
-		if (this.isTarget(row, col)) {
-			arr.push(square);
-			return arr;
-		}
-		return arr;
-	}
+	// addValidSquare(row, col, square) {
+	// 	if (this.isTarget(row, col)) {
+	// 		return square;
+	// 	} else {
+	// 		return '';
+	// 	}
+	// }
 
 	checkColForward(row, col) {
 		let newCol = col;
@@ -56,7 +67,9 @@ export default class Rook extends Piece {
 		for (let i = col + 1; i < 8; i++) {
 			newCol++;
 			const square = `${row}${newCol}`;
-			arr.push(this.addValidSquare(row, newCol, square));
+			if (this.isTarget(row, newCol)) {
+				arr.push(square);
+			}
 		}
 		return arr;
 	}
@@ -67,7 +80,9 @@ export default class Rook extends Piece {
 		for (let i = col - 1; i >= 0; i--) {
 			newCol--;
 			const square = `${row}${newCol}`;
-			arr.push(this.addValidSquare(row, newCol, square));
+			if (this.isTarget(row, newCol)) {
+				arr.push(square);
+			}
 		}
 		return arr;
 	}
@@ -79,7 +94,9 @@ export default class Rook extends Piece {
 			newRow++;
 			// const newRowStr = String(newRow);
 			const square = `${newRow}${col}`;
-			arr.push(this.addValidSquare(newRow, col, square));
+			if (this.isTarget(newRow, col)) {
+				arr.push(square);
+			}
 		}
 		return arr;
 	}
@@ -90,7 +107,9 @@ export default class Rook extends Piece {
 		for (let i = row - 1; i >= 0; i--) {
 			newRow--;
 			const square = `${newRow}${col}`;
-			arr.push(this.addValidSquare(newRow, col, square));
+			if (this.isTarget(newRow, col)) {
+				arr.push(square);
+			}
 		}
 		return arr;
 	}
