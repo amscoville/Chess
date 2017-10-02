@@ -8,7 +8,7 @@ import BoardState from '../board/boardState';
 
 const $ = require('jquery');
 
-// let isEnemy = false;
+// let isEnemy;
 
 export default class Board {
 	constructor() {

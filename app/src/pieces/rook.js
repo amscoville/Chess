@@ -3,7 +3,7 @@ import BoardState from '../board/boardState';
 
 // const $ = require('jquery');
 
-let isEnemy = false;
+let pieceIsEnemy;
 // let isAlly = false;
 
 export default class Rook extends Piece {
@@ -13,7 +13,6 @@ export default class Rook extends Piece {
 		this.targets = [];
 	}
 
-	// get this to stop looping once it hits an enemy or ally, so it can't highlight beyond that space
 	getTargets(row, col) {
 		this.targets = [];
 		const origCol = Number(col);
@@ -29,9 +28,12 @@ export default class Rook extends Piece {
 	isTarget(row, col) {
 		if (BoardState.describeSquare(row, col) === 'empty') {
 			return true;
-		} else if (BoardState.describeSquare(row, col) === 'enemy') {
-			isEnemy = true;
+		} else if (BoardState.describeSquare(row, col) === 'enemy' && !pieceIsEnemy) {
+			pieceIsEnemy = true;
 			return true;
+		} else if (BoardState.describeSquare(row, col) === 'enemy' && pieceIsEnemy) {
+			pieceIsEnemy = false;
+			return false;
 		} else if (BoardState.describeSquare(row, col) === 'ally' || BoardState.describeSquare(row, col) === 'invalid') {
 			return false;
 		} else {
@@ -41,12 +43,8 @@ export default class Rook extends Piece {
 
 	addValidSquare(row, col, square) {
 		const arr = [];
-		if (this.isTarget(row, col) && !isEnemy) {
+		if (this.isTarget(row, col)) {
 			arr.push(square);
-		} else if (this.isTarget(row, col) && isEnemy) {
-			arr.push(square);
-			return arr;
-		} else {
 			return arr;
 		}
 		return arr;
@@ -54,48 +52,45 @@ export default class Rook extends Piece {
 
 	checkColForward(row, col) {
 		let newCol = col;
-		let arr = [];
+		const arr = [];
 		for (let i = col + 1; i < 8; i++) {
 			newCol++;
-			const newColStr = String(newCol);
-			const square = `${row}${newColStr}`;
-			arr = this.addValidSquare(row, newColStr, square);
+			const square = `${row}${newCol}`;
+			arr.push(this.addValidSquare(row, newCol, square));
 		}
 		return arr;
 	}
 
 	checkColBackward(row, col) {
 		let newCol = col;
-		let arr = [];
+		const arr = [];
 		for (let i = col - 1; i >= 0; i--) {
 			newCol--;
-			const newColStr = String(newCol);
-			const square = `${row}${newColStr}`;
-			arr = this.addValidSquare(row, newColStr, square);
+			const square = `${row}${newCol}`;
+			arr.push(this.addValidSquare(row, newCol, square));
 		}
 		return arr;
 	}
 
 	checkRowForward(row, col) {
-		let arr = [];
+		const arr = [];
 		let newRow = row;
 		for (let i = row + 1; i < 8; i++) {
 			newRow++;
-			const newRowStr = String(newRow);
-			const square = `${newRowStr}${col}`;
-			arr = this.addValidSquare(newRowStr, col, square);
+			// const newRowStr = String(newRow);
+			const square = `${newRow}${col}`;
+			arr.push(this.addValidSquare(newRow, col, square));
 		}
 		return arr;
 	}
 
 	checkRowBackward(row, col) {
-		let arr = [];
+		const arr = [];
 		let newRow = row;
 		for (let i = row - 1; i >= 0; i--) {
 			newRow--;
-			const newRowStr = String(newRow);
-			const square = `${newRowStr}${col}`;
-			arr = this.addValidSquare(newRowStr, col, square);
+			const square = `${newRow}${col}`;
+			arr.push(this.addValidSquare(newRow, col, square));
 		}
 		return arr;
 	}
