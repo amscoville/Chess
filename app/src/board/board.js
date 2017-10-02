@@ -69,7 +69,7 @@ export default class Board {
 		const pieceCol = pieceID[1];
 		const pieceImg = BoardState.state[pieceRow][pieceCol].img;
 		const targetSpot = $(`#${row}${col}`);
-		if (piece.color === 'black') { // change to piece.color !== this.turn after implementing turns
+		if (piece.color === 'white') { // change to piece.color !== this.turn after implementing turns
 			this.captured = targetSpot.html;
 		}
 		targetSpot.html(pieceImg);
@@ -97,7 +97,7 @@ export default class Board {
 	}
 
 	isEnemy(row, col) {
-		return this.state[row][col].color === 'black'; // change after implementing turns
+		return this.state[row][col].color === 'white'; // change after implementing turns
 		// return this.state[row][col].color !== this.turn;
 	}
 }
