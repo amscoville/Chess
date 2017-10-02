@@ -4,7 +4,7 @@ import BoardState from '../board/boardState';
 // const $ = require('jquery');
 
 let pieceIsEnemy;
-// let isAlly = false;
+let isAlly;
 
 export default class Rook extends Piece {
 	constructor(color, row, col) {
@@ -33,37 +33,40 @@ export default class Rook extends Piece {
 		if (rowBackTargs !== []) {
 			this.targets.push(...rowBackTargs);
 		}
-		console.log(this.targets);
 		return this.targets;
 	}
 
 	isTarget(row, col) {
-		if (BoardState.describeSquare(row, col) === 'empty') {
+		if (BoardState.describeSquare(row, col) === 'empty' && !isAlly) {
 			return true;
-		} else if (BoardState.describeSquare(row, col) === 'enemy' && !pieceIsEnemy) {
+		} else if (BoardState.describeSquare(row, col) === 'empty' && isAlly) {
+			return false;
+		} else if (BoardState.describeSquare(row, col) === 'empty' && !pieceIsEnemy) {
+			return true;
+		} else if (BoardState.describeSquare(row, col) === 'empty' && pieceIsEnemy) {
+			return false;
+		} else if (BoardState.describeSquare(row, col) === 'enemy' && !pieceIsEnemy && !isAlly) {
 			pieceIsEnemy = true;
 			return true;
 		} else if (BoardState.describeSquare(row, col) === 'enemy' && pieceIsEnemy) {
-			pieceIsEnemy = false;
 			return false;
-		} else if (BoardState.describeSquare(row, col) === 'ally' || BoardState.describeSquare(row, col) === 'invalid') {
+		} else if (BoardState.describeSquare(row, col) === 'ally' && !isAlly) {
+			isAlly = true;
+			return false;
+		} else if (BoardState.describeSquare(row, col) === 'ally' && isAlly) {
+			return false;
+		} else if (BoardState.describeSquare(row, col) === 'invalid') {
 			return false;
 		} else {
 			return false;
 		}
 	}
 
-	// addValidSquare(row, col, square) {
-	// 	if (this.isTarget(row, col)) {
-	// 		return square;
-	// 	} else {
-	// 		return '';
-	// 	}
-	// }
-
 	checkColForward(row, col) {
 		let newCol = col;
 		const arr = [];
+		pieceIsEnemy = false;
+		isAlly = false;
 		for (let i = col + 1; i < 8; i++) {
 			newCol++;
 			const square = `${row}${newCol}`;
@@ -77,6 +80,8 @@ export default class Rook extends Piece {
 	checkColBackward(row, col) {
 		let newCol = col;
 		const arr = [];
+		pieceIsEnemy = false;
+		isAlly = false;
 		for (let i = col - 1; i >= 0; i--) {
 			newCol--;
 			const square = `${row}${newCol}`;
@@ -90,9 +95,10 @@ export default class Rook extends Piece {
 	checkRowForward(row, col) {
 		const arr = [];
 		let newRow = row;
+		pieceIsEnemy = false;
+		isAlly = false;
 		for (let i = row + 1; i < 8; i++) {
 			newRow++;
-			// const newRowStr = String(newRow);
 			const square = `${newRow}${col}`;
 			if (this.isTarget(newRow, col)) {
 				arr.push(square);
@@ -104,6 +110,8 @@ export default class Rook extends Piece {
 	checkRowBackward(row, col) {
 		const arr = [];
 		let newRow = row;
+		pieceIsEnemy = false;
+		isAlly = false;
 		for (let i = row - 1; i >= 0; i--) {
 			newRow--;
 			const square = `${newRow}${col}`;
