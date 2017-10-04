@@ -18,40 +18,21 @@ export default class Rook extends Piece {
 		const colBackTargs = this.checkColBackward(origRow, origCol);
 		const rowFwdTargs = this.checkRowForward(origRow, origCol);
 		const rowBackTargs = this.checkRowBackward(origRow, origCol);
-		if (colFwdTargs !== []) {
-			this.targets.push(...colFwdTargs);
-		}
-		if (colBackTargs !== []) {
-			this.targets.push(...colBackTargs);
-		}
-		if (rowFwdTargs !== []) {
-			this.targets.push(...rowFwdTargs);
-		}
-		if (rowBackTargs !== []) {
-			this.targets.push(...rowBackTargs);
-		}
+		this.targets.push(...colFwdTargs, ...colBackTargs, ...rowFwdTargs, ...rowBackTargs);
 		return this.targets;
 	}
 
-	spaceToArr(row, col) {
-		const arr = [];
-		const square = `${row}${col}`;
-		arr.push(square);
-		return arr;
-	}
-
-
 	checkColForward(row, col) {
-		let newCol = col;
+		// let newCol = col;
 		const arr = [];
 		for (let i = col + 1; i < 8; i++) {
-			newCol++;
-			if (BoardState.describeSquare(row, newCol) === 'empty') {
-				arr.push(...this.spaceToArr(row, newCol));
-			} else if (BoardState.describeSquare(row, newCol) === 'enemy') {
-				arr.push(...this.spaceToArr(row, newCol));
+			// newCol++;
+			if (BoardState.describeSquare(row, i) === 'empty') {
+				arr.push(...this.spaceToArr(row, i));
+			} else if (BoardState.describeSquare(row, i) === 'enemy') {
+				arr.push(...this.spaceToArr(row, i));
 				break;
-			} else if (BoardState.describeSquare(row, newCol) === 'ally') {
+			} else if (BoardState.describeSquare(row, i) === 'ally') {
 				break;
 			}
 		}

@@ -5,5 +5,12 @@ export default class Piece {
 		this.col = col;
 		this.img = String.fromCharCode(parseInt(img, 16));
 	}
+
+	spaceToArr(row, col) {
+		const arr = [];
+		const square = `${row}${col}`;
+		arr.push(square);
+		return arr;
+	}
 }
 

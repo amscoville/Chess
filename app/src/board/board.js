@@ -85,9 +85,8 @@ export default class Board {
 	checkTarget(target, piece) {
 		if (piece.attr('id') !== target.attr('id')) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	describeSquare(row, col) {
