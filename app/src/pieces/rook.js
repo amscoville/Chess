@@ -3,9 +3,6 @@ import BoardState from '../board/boardState';
 
 // const $ = require('jquery');
 
-let pieceIsEnemy;
-let isAlly;
-
 export default class Rook extends Piece {
 	constructor(color, row, col) {
 		const img = color === 'white' ? '2656' : '265C';
@@ -13,10 +10,8 @@ export default class Rook extends Piece {
 		this.targets = [];
 	}
 
-	getTargets(row, col) {
+	getTargets(row, col) { // check if it's the king
 		this.targets = [];
-		pieceIsEnemy = false;
-		isAlly = false;
 		const origCol = Number(col);
 		const origRow = Number(row);
 		const colFwdTargs = this.checkColForward(origRow, origCol);
@@ -38,43 +33,27 @@ export default class Rook extends Piece {
 		return this.targets;
 	}
 
-	isTarget(row, col) {
-		if (BoardState.describeSquare(row, col) === 'empty' && (!isAlly || !pieceIsEnemy)) {
-			return true;
-		} else if (BoardState.describeSquare(row, col) === 'empty' && (isAlly || pieceIsEnemy)) {
-			return false;
-		} else if (BoardState.describeSquare(row, col) === 'enemy' && (!pieceIsEnemy || !isAlly)) {
-			pieceIsEnemy = true;
-			return true;
-		} else if (BoardState.describeSquare(row, col) === 'enemy' && pieceIsEnemy) {
-			return false;
-		} else if (BoardState.describeSquare(row, col) === 'ally' && !isAlly) {
-			isAlly = true;
-			return false;
-		} else if (BoardState.describeSquare(row, col) === 'ally' && isAlly) {
-			return false;
-		} else if (BoardState.describeSquare(row, col) === 'invalid') {
-			return false;
-		} else {
-			return false;
-		}
-	}
-
 	spaceToArr(row, col) {
 		const arr = [];
 		const square = `${row}${col}`;
-		if (this.isTarget(row, col)) {
-			arr.push(square);
-		}
+		arr.push(square);
 		return arr;
 	}
+
 
 	checkColForward(row, col) {
 		let newCol = col;
 		const arr = [];
 		for (let i = col + 1; i < 8; i++) {
 			newCol++;
-			arr.push(...this.spaceToArr(row, newCol));
+			if (BoardState.describeSquare(row, newCol) === 'empty') {
+				arr.push(...this.spaceToArr(row, newCol));
+			} else if (BoardState.describeSquare(row, newCol) === 'enemy') {
+				arr.push(...this.spaceToArr(row, newCol));
+				break;
+			} else if (BoardState.describeSquare(row, newCol) === 'ally') {
+				break;
+			}
 		}
 		return arr;
 	}
@@ -84,7 +63,14 @@ export default class Rook extends Piece {
 		const arr = [];
 		for (let i = col - 1; i >= 0; i--) {
 			newCol--;
-			arr.push(...this.spaceToArr(row, newCol));
+			if (BoardState.describeSquare(row, newCol) === 'empty') {
+				arr.push(...this.spaceToArr(row, newCol));
+			} else if (BoardState.describeSquare(row, newCol) === 'enemy') {
+				arr.push(...this.spaceToArr(row, newCol));
+				break;
+			} else if (BoardState.describeSquare(row, newCol) === 'ally') {
+				break;
+			}
 		}
 		return arr;
 	}
@@ -94,7 +80,14 @@ export default class Rook extends Piece {
 		let newRow = row;
 		for (let i = row + 1; i < 8; i++) {
 			newRow++;
-			arr.push(...this.spaceToArr(newRow, col));
+			if (BoardState.describeSquare(newRow, col) === 'empty') {
+				arr.push(...this.spaceToArr(newRow, col));
+			} else if (BoardState.describeSquare(newRow, col) === 'enemy') {
+				arr.push(...this.spaceToArr(newRow, col));
+				break;
+			} else if (BoardState.describeSquare(newRow, col) === 'ally') {
+				break;
+			}
 		}
 		return arr;
 	}
@@ -104,7 +97,14 @@ export default class Rook extends Piece {
 		let newRow = row;
 		for (let i = row - 1; i >= 0; i--) {
 			newRow--;
-			arr.push(...this.spaceToArr(newRow, col));
+			if (BoardState.describeSquare(newRow, col) === 'empty') {
+				arr.push(...this.spaceToArr(newRow, col));
+			} else if (BoardState.describeSquare(newRow, col) === 'enemy') {
+				arr.push(...this.spaceToArr(newRow, col));
+				break;
+			} else if (BoardState.describeSquare(newRow, col) === 'ally') {
+				break;
+			}
 		}
 		return arr;
 	}

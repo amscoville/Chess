@@ -35,4 +35,5 @@ body {
 
 .highlight {
 	background-color: lightcoral !important;
+	border: 1px solid darkslategray;
 }

@@ -4,6 +4,9 @@ require('../styles/chess.css');
 
 const $ = require('jquery');
 
+// let pieceIsEnemy;
+// let isAlly;
+
 $(document).ready(() => {
 	createBoard();
 	displayPieces();
@@ -14,6 +17,8 @@ function handleSquareClick(event) {
 	const coordinates = getSquareData(event);
 	const row = coordinates[0];
 	const col = coordinates[1];
+	// pieceIsEnemy = false;
+	// isAlly = false;
 	if ($(`#${row}${col}`).hasClass('highlight')) {
 		BoardState.move(row, col);
 		$('div').removeClass('highlight');
@@ -41,7 +46,7 @@ function createBoard() {
 
 function displayPieces() {
 	for (let i = 0; i < 8; i++) {
-		if (i === 1){
+		if (i === 1) {
 			BoardState.state[i] = [];
 		}
 		for (let j = 0; j < BoardState.state[i].length; j++) {

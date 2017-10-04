@@ -8,7 +8,8 @@ import BoardState from '../board/boardState';
 
 const $ = require('jquery');
 
-// let isEnemy;
+// let pieceIsEnemy;
+// let isAlly;
 
 export default class Board {
 	constructor() {
@@ -62,19 +63,31 @@ export default class Board {
 		this.captured = [];
 	}
 
-	move(row, col) { // input is the row and column of a clicked square that is highlighted
+	move(row, col) { // input is the row and column of square where piece will move
 		const piece = $('.originalSquare');
 		const pieceID = piece.attr('id');
 		const pieceRow = pieceID[0];
 		const pieceCol = pieceID[1];
 		const pieceImg = BoardState.state[pieceRow][pieceCol].img;
 		const targetSpot = $(`#${row}${col}`);
-		if (piece.color === 'white') { // change to piece.color !== this.turn after implementing turns
-			this.captured = targetSpot.html;
+		if (this.checkTarget(targetSpot, piece)) {
+			if (piece.color === 'white') { // change to piece.color !== this.turn after implementing turns
+				this.captured = targetSpot.html;
+			}
+			targetSpot.html(pieceImg);
+			piece.html('');
+			piece.removeClass('originalSquare');
+			BoardState.state[row][col] = BoardState.state[pieceRow][pieceCol];
+			BoardState.state[pieceRow][pieceCol] = '';
 		}
-		targetSpot.html(pieceImg);
-		piece.html('');
-		piece.removeClass('originalSquare');
+	}
+
+	checkTarget(target, piece) {
+		if (piece.attr('id') !== target.attr('id')) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	describeSquare(row, col) {
