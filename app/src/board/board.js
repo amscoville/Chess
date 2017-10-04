@@ -96,6 +96,8 @@ export default class Board {
 			return 'empty';
 		} else if (this.isEnemy(row, col)) {
 			return 'enemy';
+		} else if (this.isKing(row, col)) {
+			return 'king';
 		}
 		return 'ally';
 	}
@@ -112,5 +114,14 @@ export default class Board {
 		return this.state[row][col].color === 'white'; // change after implementing turns
 		// return this.state[row][col].color !== this.turn;
 	}
+
+	isKing(row, col) {
+		const whiteKing = String.fromCharCode(parseInt('2654', 16));
+		const blackKing = String.fromCharCode(parseInt('265A', 16))
+		if (BoardState.state[row][col].img === whiteKing || BoardState.state[row][col].img === blackKing) {
+			return 'king';
+		}
+	}
 }
+
 
