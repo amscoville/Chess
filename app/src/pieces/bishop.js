@@ -1,5 +1,5 @@
 import Piece from './piece';
-// import BoardState from '../board/boardState';
+import BoardState from '../board/boardState';
 
 
 export default class Bishop extends Piece {
@@ -9,7 +9,6 @@ export default class Bishop extends Piece {
 		this.targets = [];
 	}
 
-	
 	getTargets(row, col) { // check if it's the king
 		this.targets = [];
 		const origCol = Number(col);
@@ -23,8 +22,9 @@ export default class Bishop extends Piece {
 	}
 
 	findNorthEastTargs(row, col) {
+		const arr = [];
 		let newRow = row;
-		for (let i = col + 1; i < 8; i++){
+		for (let i = col + 1; i < 8; i++) {
 			newRow++;
 			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(...this.spaceToArr(newRow, i));
@@ -39,8 +39,9 @@ export default class Bishop extends Piece {
 	}
 
 	findSouthWestTargs(row, col) {
+		const arr = [];
 		let newRow = row;
-		for (let i = col - 1; i >= 0; i--){
+		for (let i = col - 1; i >= 0; i--) {
 			newRow--;
 			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(...this.spaceToArr(newRow, i));
@@ -55,8 +56,9 @@ export default class Bishop extends Piece {
 	}
 
 	findNorthWestTargs(row, col) {
+		const arr = [];
 		let newRow = row;
-		for (let i = col - 1; i >= 0; i--){
+		for (let i = col - 1; i >= 0; i--) {
 			newRow++;
 			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(...this.spaceToArr(newRow, i));
@@ -71,8 +73,9 @@ export default class Bishop extends Piece {
 	}
 
 	findSouthEastTargs(row, col) {
+		const arr = [];
 		let newRow = row;
-		for (let i = col + 1; i < 8; i++){
+		for (let i = col + 1; i < 8; i++) {
 			newRow--;
 			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(...this.spaceToArr(newRow, i));
