@@ -17,8 +17,6 @@ function handleSquareClick(event) {
 	const coordinates = getSquareData(event);
 	const row = coordinates[0];
 	const col = coordinates[1];
-	// pieceIsEnemy = false;
-	// isAlly = false;
 	if ($(`#${row}${col}`).hasClass('highlight')) {
 		BoardState.move(row, col);
 		$('div').removeClass('highlight');

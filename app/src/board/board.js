@@ -70,7 +70,7 @@ export default class Board {
 		const pieceCol = pieceID[1];
 		const pieceImg = BoardState.state[pieceRow][pieceCol].img;
 		const targetSpot = $(`#${row}${col}`);
-		if (this.checkTarget(targetSpot, piece)) {
+		if (this.checkTarget(targetSpot, piece) && !this.isKing(row, col)) {
 			if (piece.color === 'white') { // change to piece.color !== this.turn after implementing turns
 				this.captured = targetSpot.html;
 			}
@@ -116,12 +116,14 @@ export default class Board {
 	}
 
 	isKing(row, col) {
-		const whiteKing = String.fromCharCode(parseInt('2654', 16));
-		const blackKing = String.fromCharCode(parseInt('265A', 16))
-		if (BoardState.state[row][col].img === whiteKing || BoardState.state[row][col].img === blackKing) {
-			return 'king';
+		const image = BoardState.state[row][col].img;
+		const uni1 = '2654';
+		const uni2 = '265A';
+		const whiteKing = String.fromCharCode(parseInt(uni1, 16));
+		const blackKing = String.fromCharCode(parseInt(uni2, 16));
+		if (image === whiteKing || image === blackKing) {
+			return true;
 		}
+		return false;
 	}
 }
-
-

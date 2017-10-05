@@ -23,10 +23,8 @@ export default class Rook extends Piece {
 	}
 
 	checkColForward(row, col) {
-		// let newCol = col;
 		const arr = [];
 		for (let i = col + 1; i < 8; i++) {
-			// newCol++;
 			if (BoardState.describeSquare(row, i) === 'empty') {
 				arr.push(...this.spaceToArr(row, i));
 			} else if (BoardState.describeSquare(row, i) === 'enemy') {
@@ -40,16 +38,14 @@ export default class Rook extends Piece {
 	}
 
 	checkColBackward(row, col) {
-		let newCol = col;
 		const arr = [];
 		for (let i = col - 1; i >= 0; i--) {
-			newCol--;
-			if (BoardState.describeSquare(row, newCol) === 'empty') {
-				arr.push(...this.spaceToArr(row, newCol));
-			} else if (BoardState.describeSquare(row, newCol) === 'enemy') {
-				arr.push(...this.spaceToArr(row, newCol));
+			if (BoardState.describeSquare(row, i) === 'empty') {
+				arr.push(...this.spaceToArr(row, i));
+			} else if (BoardState.describeSquare(row, i) === 'enemy') {
+				arr.push(...this.spaceToArr(row, i));
 				break;
-			} else if (BoardState.describeSquare(row, newCol) === 'ally') {
+			} else if (BoardState.describeSquare(row, i) === 'ally') {
 				break;
 			}
 		}
@@ -58,15 +54,13 @@ export default class Rook extends Piece {
 
 	checkRowForward(row, col) {
 		const arr = [];
-		let newRow = row;
 		for (let i = row + 1; i < 8; i++) {
-			newRow++;
-			if (BoardState.describeSquare(newRow, col) === 'empty') {
-				arr.push(...this.spaceToArr(newRow, col));
-			} else if (BoardState.describeSquare(newRow, col) === 'enemy') {
-				arr.push(...this.spaceToArr(newRow, col));
+			if (BoardState.describeSquare(i, col) === 'empty') {
+				arr.push(...this.spaceToArr(i, col));
+			} else if (BoardState.describeSquare(i, col) === 'enemy') {
+				arr.push(...this.spaceToArr(i, col));
 				break;
-			} else if (BoardState.describeSquare(newRow, col) === 'ally') {
+			} else if (BoardState.describeSquare(i, col) === 'ally') {
 				break;
 			}
 		}
@@ -75,15 +69,13 @@ export default class Rook extends Piece {
 
 	checkRowBackward(row, col) {
 		const arr = [];
-		let newRow = row;
 		for (let i = row - 1; i >= 0; i--) {
-			newRow--;
-			if (BoardState.describeSquare(newRow, col) === 'empty') {
-				arr.push(...this.spaceToArr(newRow, col));
-			} else if (BoardState.describeSquare(newRow, col) === 'enemy') {
-				arr.push(...this.spaceToArr(newRow, col));
+			if (BoardState.describeSquare(i, col) === 'empty') {
+				arr.push(...this.spaceToArr(i, col));
+			} else if (BoardState.describeSquare(i, col) === 'enemy') {
+				arr.push(...this.spaceToArr(i, col));
 				break;
-			} else if (BoardState.describeSquare(newRow, col) === 'ally') {
+			} else if (BoardState.describeSquare(i, col) === 'ally') {
 				break;
 			}
 		}
