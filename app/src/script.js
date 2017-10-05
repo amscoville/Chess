@@ -20,7 +20,7 @@ function handleSquareClick(event) {
 	if ($(`#${row}${col}`).hasClass('highlight')) {
 		BoardState.move(row, col);
 		$('div').removeClass('highlight');
-	} else {
+	} else if (!($('div').hasClass('highlight'))) {
 		$('div').removeClass('originalSquare');
 		$(`#${row}${col}`).addClass('originalSquare');
 		const targets = BoardState.state[row][col].getTargets(row, col);
