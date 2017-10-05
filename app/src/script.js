@@ -64,6 +64,7 @@ function highlightTargets(arr, row, col) {
 	$('.highlight').removeClass('highlight');
 	$(`#${row}${col}`).addClass('highlight');
 	for (let i = 0; i < arr.length; i++) {
+		// check if not king
 		$(`#${arr[i]}`).addClass('highlight');
 	}
 }

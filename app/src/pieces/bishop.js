@@ -9,7 +9,7 @@ export default class Bishop extends Piece {
 		this.targets = [];
 	}
 
-	getTargets(row, col) { // check if it's the king
+	getTargets(row, col) {
 		this.targets = [];
 		const origCol = Number(col);
 		const origRow = Number(row);
@@ -26,7 +26,9 @@ export default class Bishop extends Piece {
 		let newRow = row;
 		for (let i = col + 1; i < 8; i++) {
 			newRow++;
-			if (BoardState.describeSquare(newRow, i) === 'empty') {
+			if (BoardState.describeSquare(newRow, i) === 'king') {
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(...this.spaceToArr(newRow, i));
 			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
 				arr.push(...this.spaceToArr(newRow, i));
@@ -43,7 +45,9 @@ export default class Bishop extends Piece {
 		let newRow = row;
 		for (let i = col - 1; i >= 0; i--) {
 			newRow--;
-			if (BoardState.describeSquare(newRow, i) === 'empty') {
+			if (BoardState.describeSquare(newRow, i) === 'king') {
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(...this.spaceToArr(newRow, i));
 			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
 				arr.push(...this.spaceToArr(newRow, i));
@@ -60,7 +64,9 @@ export default class Bishop extends Piece {
 		let newRow = row;
 		for (let i = col - 1; i >= 0; i--) {
 			newRow++;
-			if (BoardState.describeSquare(newRow, i) === 'empty') {
+			if (BoardState.describeSquare(newRow, i) === 'king') {
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(...this.spaceToArr(newRow, i));
 			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
 				arr.push(...this.spaceToArr(newRow, i));
@@ -77,7 +83,9 @@ export default class Bishop extends Piece {
 		let newRow = row;
 		for (let i = col + 1; i < 8; i++) {
 			newRow--;
-			if (BoardState.describeSquare(newRow, i) === 'empty') {
+			if (BoardState.describeSquare(newRow, i) === 'king') {
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(...this.spaceToArr(newRow, i));
 			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
 				arr.push(...this.spaceToArr(newRow, i));

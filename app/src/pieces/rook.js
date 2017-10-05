@@ -25,7 +25,9 @@ export default class Rook extends Piece {
 	checkColForward(row, col) {
 		const arr = [];
 		for (let i = col + 1; i < 8; i++) {
-			if (BoardState.describeSquare(row, i) === 'empty') {
+			if (BoardState.describeSquare(row, i) === 'king') {
+				break;
+			} else if (BoardState.describeSquare(row, i) === 'empty') {
 				arr.push(...this.spaceToArr(row, i));
 			} else if (BoardState.describeSquare(row, i) === 'enemy') {
 				arr.push(...this.spaceToArr(row, i));
@@ -40,7 +42,9 @@ export default class Rook extends Piece {
 	checkColBackward(row, col) {
 		const arr = [];
 		for (let i = col - 1; i >= 0; i--) {
-			if (BoardState.describeSquare(row, i) === 'empty') {
+			if (BoardState.describeSquare(row, i) === 'king') {
+				break;
+			} else if (BoardState.describeSquare(row, i) === 'empty') {
 				arr.push(...this.spaceToArr(row, i));
 			} else if (BoardState.describeSquare(row, i) === 'enemy') {
 				arr.push(...this.spaceToArr(row, i));
@@ -55,7 +59,9 @@ export default class Rook extends Piece {
 	checkRowForward(row, col) {
 		const arr = [];
 		for (let i = row + 1; i < 8; i++) {
-			if (BoardState.describeSquare(i, col) === 'empty') {
+			if (BoardState.describeSquare(i, col) === 'king') {
+				break;
+			} else if (BoardState.describeSquare(i, col) === 'empty') {
 				arr.push(...this.spaceToArr(i, col));
 			} else if (BoardState.describeSquare(i, col) === 'enemy') {
 				arr.push(...this.spaceToArr(i, col));
@@ -70,7 +76,9 @@ export default class Rook extends Piece {
 	checkRowBackward(row, col) {
 		const arr = [];
 		for (let i = row - 1; i >= 0; i--) {
-			if (BoardState.describeSquare(i, col) === 'empty') {
+			if (BoardState.describeSquare(i, col) === 'king') {
+				break;
+			} else if (BoardState.describeSquare(i, col) === 'empty') {
 				arr.push(...this.spaceToArr(i, col));
 			} else if (BoardState.describeSquare(i, col) === 'enemy') {
 				arr.push(...this.spaceToArr(i, col));

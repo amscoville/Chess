@@ -64,13 +64,14 @@ export default class Board {
 	}
 
 	move(row, col) { // input is the row and column of square where piece will move
+		// if you click an empty square after targets are highlighted, you can no longer move the piece
 		const piece = $('.originalSquare');
 		const pieceID = piece.attr('id');
 		const pieceRow = pieceID[0];
 		const pieceCol = pieceID[1];
 		const pieceImg = BoardState.state[pieceRow][pieceCol].img;
 		const targetSpot = $(`#${row}${col}`);
-		if (this.checkTarget(targetSpot, piece) && !this.isKing(row, col)) {
+		if (this.checkTarget(targetSpot, piece, row, col)) {
 			if (piece.color === 'white') { // change to piece.color !== this.turn after implementing turns
 				this.captured = targetSpot.html;
 			}
@@ -94,10 +95,10 @@ export default class Board {
 			return 'invalid';
 		} else if (!this.pieceOnSpace(row, col)) {
 			return 'empty';
-		} else if (this.isEnemy(row, col)) {
-			return 'enemy';
 		} else if (this.isKing(row, col)) {
 			return 'king';
+		} else if (this.isEnemy(row, col)) {
+			return 'enemy';
 		}
 		return 'ally';
 	}
