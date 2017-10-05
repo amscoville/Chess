@@ -4,9 +4,6 @@ require('../styles/chess.css');
 
 const $ = require('jquery');
 
-// let pieceIsEnemy;
-// let isAlly;
-
 $(document).ready(() => {
 	createBoard();
 	displayPieces();
@@ -17,10 +14,10 @@ function handleSquareClick(event) {
 	const coordinates = getSquareData(event);
 	const row = coordinates[0];
 	const col = coordinates[1];
-	if ($(`#${row}${col}`).hasClass('highlight')) {
+	if ($(`#${row}${col}`).hasClass('highlight')) { // click on highlighted square
 		BoardState.move(row, col);
 		$('div').removeClass('highlight');
-	} else if (!($('div').hasClass('highlight'))) {
+	} else if (BoardState.state[row][col]) { // click on square with piece
 		$('div').removeClass('originalSquare');
 		$(`#${row}${col}`).addClass('originalSquare');
 		const targets = BoardState.state[row][col].getTargets(row, col);
