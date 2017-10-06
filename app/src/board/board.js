@@ -6,8 +6,6 @@ import King from '../pieces/king';
 import Pawn from '../pieces/pawn';
 import BoardState from '../board/boardState';
 
-// const $ = require('jquery');
-
 export default class Board {
 	constructor() {
 		this.state = [
@@ -29,7 +27,7 @@ export default class Board {
 				new Pawn('black', 1, 4),
 				new Pawn('black', 1, 5),
 				new Pawn('black', 1, 6),
-				new Pawn('black', 1, 7)
+				new Pawn('white', 1, 7)
 			],
 			new Array(8),
 			new Array(8),

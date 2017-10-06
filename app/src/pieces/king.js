@@ -7,4 +7,17 @@ export default class King extends Piece {
 		const img = color === 'white' ? '2654' : '265A';
 		super(color, row, col, img);
 	}
+
+	getTargets() {
+		return [
+			`${+this.row - 1}${this.col}`,
+			`${+this.row - 1}${+this.col + 1}`,
+			`${this.row}${+this.col + 1}`,
+			`${+this.row + 1}${+this.col + 1}`,
+			`${+this.row + 1}${this.col}`,
+			`${+this.row + 1}${+this.col - 1}`,
+			`${this.row}${+this.col - 1}`,
+			`${+this.row - 1}${+this.col - 1}`
+		];
+	}
 }

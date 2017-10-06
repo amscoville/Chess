@@ -1,7 +1,5 @@
 import BoardState from '../board/boardState';
 
-const $ = require('jquery');
-
 export default class Piece {
 	constructor(color, row, col, img) {
 		this.color = color;
