@@ -9,18 +9,18 @@ export default class Bishop extends Piece {
 		this.targets = [];
 	}
 
-	getTargets() {
+	getTargets(forCheck) {
 		this.targets = [];
-		const northEastTargs = findNorthEastTargs(+this.row, +this.col);
-		const southWestTargs = findSouthWestTargs(+this.row, +this.col);
-		const northWestTargs = findNorthWestTargs(+this.row, +this.col);
-		const southEastTargs = findSouthEastTargs(+this.row, +this.col);
+		const northEastTargs = findNorthEastTargs(+this.row, +this.col, forCheck);
+		const southWestTargs = findSouthWestTargs(+this.row, +this.col, forCheck);
+		const northWestTargs = findNorthWestTargs(+this.row, +this.col, forCheck);
+		const southEastTargs = findSouthEastTargs(+this.row, +this.col, forCheck);
 		this.targets.push(...northEastTargs, ...southWestTargs, ...northWestTargs, ...southEastTargs);
 		return this.targets;
 	}
 }
 
-function findNorthEastTargs(row, col) {
+function findNorthEastTargs(row, col, forCheck) {
 	const arr = [];
 	let newRow = row;
 	for (let i = col + 1; i < 8; i++) {
@@ -33,13 +33,17 @@ function findNorthEastTargs(row, col) {
 			arr.push(`${newRow}${i}`);
 			break;
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			break;
+			if (forCheck) {
+				arr.push(`${newRow}${i}`);
+			} else {
+				break;
+			}
 		}
 	}
 	return arr;
 }
 
-function findSouthWestTargs(row, col) {
+function findSouthWestTargs(row, col, forCheck) {
 	const arr = [];
 	let newRow = row;
 	for (let i = col - 1; i >= 0; i--) {
@@ -52,13 +56,17 @@ function findSouthWestTargs(row, col) {
 			arr.push(`${newRow}${i}`);
 			break;
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			break;
+			if (forCheck) {
+				arr.push(`${newRow}${i}`);
+			} else {
+				break;
+			}
 		}
 	}
 	return arr;
 }
 
-function findNorthWestTargs(row, col) {
+function findNorthWestTargs(row, col, forCheck) {
 	const arr = [];
 	let newRow = row;
 	for (let i = col - 1; i >= 0; i--) {
@@ -71,13 +79,17 @@ function findNorthWestTargs(row, col) {
 			arr.push(`${newRow}${i}`);
 			break;
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			break;
+			if (forCheck) {
+				arr.push(`${newRow}${i}`);
+			} else {
+				break;
+			}
 		}
 	}
 	return arr;
 }
 
-function findSouthEastTargs(row, col) {
+function findSouthEastTargs(row, col, forCheck) {
 	const arr = [];
 	let newRow = row;
 	for (let i = col + 1; i < 8; i++) {
@@ -90,7 +102,11 @@ function findSouthEastTargs(row, col) {
 			arr.push(`${newRow}${i}`);
 			break;
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			break;
+			if (forCheck) {
+				arr.push(`${newRow}${i}`);
+			} else {
+				break;
+			}
 		}
 	}
 	return arr;

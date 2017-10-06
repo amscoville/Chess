@@ -55,7 +55,7 @@ export default class Board {
 			]
 		];
 		this.turn = 'black';
-		this.captured = [];
+		this.forCheck = false;
 	}
 
 	checkTarget(target, piece) {
@@ -101,5 +101,18 @@ export default class Board {
 			return true;
 		}
 		return false;
+	}
+
+	enemyTargets() {
+		const arr = [];
+		for (let i = 0; i < BoardState.state.length; i++) {
+			for (let j = 0; i < BoardState.state[i].length; j++) {
+				if (this.describeSquare(i, j) === 'enemy') {
+					this.forCheck = true;
+					arr.push(...BoardState.state[i][j].getTargets(this.forCheck));
+				}
+			}
+		}
+		return arr;
 	}
 }
