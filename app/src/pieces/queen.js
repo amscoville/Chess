@@ -15,8 +15,8 @@ export default class Queen extends Piece {
 
 	getTargets(row, col) {
 		this.targets = [];
-		const rookTargs = this.rook.getTargets(row, col);
-		const bishopTargs = this.bishop.getTargets(row, col);
+		const rookTargs = Rook.prototype.getTargets.call(this, row, col);
+		const bishopTargs = Bishop.prototype.getTargets.call(this, row, col);
 		this.targets.push(...rookTargs, ...bishopTargs);
 		return this.targets;
 	}

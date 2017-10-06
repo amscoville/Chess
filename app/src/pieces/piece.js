@@ -1,3 +1,7 @@
+import BoardState from '../board/boardState';
+
+const $ = require('jquery');
+
 export default class Piece {
 	constructor(color, row, col, img) {
 		this.color = color;
@@ -6,11 +10,11 @@ export default class Piece {
 		this.img = String.fromCharCode(parseInt(img, 16));
 	}
 
-	spaceToArr(row, col) {
-		const arr = [];
-		const square = `${row}${col}`;
-		arr.push(square);
-		return arr;
+	move(row, col) { // input is the row and column of square where piece will move
+		BoardState.state[row][col] = BoardState.state[this.row][this.col];
+		BoardState.state[this.row][this.col] = null;
+		this.row = row;
+		this.col = col;
 	}
 }
 

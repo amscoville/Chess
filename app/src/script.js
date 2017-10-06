@@ -1,4 +1,5 @@
 import BoardState from './board/boardState';
+// import Piece from './pieces/piece';
 
 require('../styles/chess.css');
 
@@ -10,17 +11,20 @@ $(document).ready(() => {
 	$('#board > div > div').click(handleSquareClick);
 });
 
+let selectedPiece;
+
 function handleSquareClick(event) {
 	const coordinates = getSquareData(event);
 	const row = coordinates[0];
 	const col = coordinates[1];
-	if ($(`#${row}${col}`).hasClass('highlight')) { // click on highlighted square
-		BoardState.move(row, col);
+	if (selectedPiece && $(`#${row}${col}`).hasClass('highlight')) { // click on highlighted square
+		movePiece(row, col);
 		$('div').removeClass('highlight');
-	} else if (BoardState.state[row][col]) { // click on square with piece
+		selectedPiece = null;
+	} else if (!selectedPiece && BoardState.state[row][col]) { // click on square with piece
 		$('div').removeClass('originalSquare');
-		$(`#${row}${col}`).addClass('originalSquare');
-		const targets = BoardState.state[row][col].getTargets(row, col);
+		selectedPiece = BoardState.state[row][col];
+		const targets = selectedPiece.getTargets(row, col);
 		highlightTargets(targets, row, col);
 	}
 }
@@ -41,9 +45,9 @@ function createBoard() {
 
 function displayPieces() {
 	for (let i = 0; i < 8; i++) {
-		// if (i === 1) {
-		// 	BoardState.state[i] = [];
-		// }
+		if (i === 1) {
+			BoardState.state[i] = [];
+		}
 		for (let j = 0; j < BoardState.state[i].length; j++) {
 			if (BoardState.state[i][j]) {
 				$(`#${BoardState.state[i][j].row}${BoardState.state[i][j].col}`).html(BoardState.state[i][j].img);
@@ -64,4 +68,12 @@ function highlightTargets(arr, row, col) {
 		// check if not king
 		$(`#${arr[i]}`).addClass('highlight');
 	}
+}
+
+function movePiece(row, col) {
+	const originalSpot = $(`#${selectedPiece.row}${selectedPiece.col}`);
+	const targetSpot = $(`#${row}${col}`);
+	targetSpot.html(selectedPiece.img);
+	originalSpot.html('');
+	selectedPiece.move(row, col);
 }

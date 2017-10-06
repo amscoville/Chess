@@ -6,10 +6,7 @@ import King from '../pieces/king';
 import Pawn from '../pieces/pawn';
 import BoardState from '../board/boardState';
 
-const $ = require('jquery');
-
-// let pieceIsEnemy;
-// let isAlly;
+// const $ = require('jquery');
 
 export default class Board {
 	constructor() {
@@ -61,26 +58,6 @@ export default class Board {
 		];
 		this.turn = 'black';
 		this.captured = [];
-	}
-
-	move(row, col) { // input is the row and column of square where piece will move
-		// if you click an empty square after targets are highlighted, you can no longer move the piece
-		const piece = $('.originalSquare');
-		const pieceID = piece.attr('id');
-		const pieceRow = pieceID[0];
-		const pieceCol = pieceID[1];
-		const pieceImg = BoardState.state[pieceRow][pieceCol].img;
-		const targetSpot = $(`#${row}${col}`);
-		if (this.checkTarget(targetSpot, piece, row, col)) {
-			if (piece.color === 'white') { // change to piece.color !== this.turn after implementing turns
-				this.captured = targetSpot.html;
-			}
-			targetSpot.html(pieceImg);
-			piece.html('');
-			piece.removeClass('originalSquare');
-			BoardState.state[row][col] = BoardState.state[pieceRow][pieceCol];
-			BoardState.state[pieceRow][pieceCol] = '';
-		}
 	}
 
 	checkTarget(target, piece) {
