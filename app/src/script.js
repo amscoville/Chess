@@ -45,9 +45,9 @@ function createBoard() {
 
 function displayPieces() {
 	for (let i = 0; i < 8; i++) {
-		// if (i === 1) {
-		// 	BoardState.state[i] = [];
-		// }
+		if (i === 1) {
+			BoardState.state[i] = [];
+		}
 		for (let j = 0; j < BoardState.state[i].length; j++) {
 			if (BoardState.state[i][j]) {
 				$(`#${BoardState.state[i][j].row}${BoardState.state[i][j].col}`).html(BoardState.state[i][j].img);
@@ -65,7 +65,6 @@ function highlightTargets(arr, row, col) {
 	$('.highlight').removeClass('highlight');
 	$(`#${row}${col}`).addClass('highlight');
 	for (let i = 0; i < arr.length; i++) {
-		// check if not king
 		$(`#${arr[i]}`).addClass('highlight');
 	}
 }
@@ -73,7 +72,9 @@ function highlightTargets(arr, row, col) {
 function movePiece(row, col) {
 	const originalSpot = $(`#${selectedPiece.row}${selectedPiece.col}`);
 	const targetSpot = $(`#${row}${col}`);
-	targetSpot.html(selectedPiece.img);
-	originalSpot.html('');
-	selectedPiece.move(row, col);
+	if (`#${selectedPiece.row}${selectedPiece.col}` !== `#${row}${col}`) {
+		targetSpot.html(selectedPiece.img);
+		originalSpot.html('');
+		selectedPiece.move(row, col);
+	}
 }

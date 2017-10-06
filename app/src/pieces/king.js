@@ -1,5 +1,5 @@
 import Piece from './piece';
-// import BoardState from '../board/boardState';
+import BoardState from '../board/boardState';
 
 
 export default class King extends Piece {
@@ -9,7 +9,8 @@ export default class King extends Piece {
 	}
 
 	getTargets() {
-		return [
+		const arr = [];
+		const possibleTargs = [
 			`${+this.row - 1}${this.col}`,
 			`${+this.row - 1}${+this.col + 1}`,
 			`${this.row}${+this.col + 1}`,
@@ -19,5 +20,13 @@ export default class King extends Piece {
 			`${this.row}${+this.col - 1}`,
 			`${+this.row - 1}${+this.col - 1}`
 		];
+		for (let i = 0; i < possibleTargs.length; i++) {
+			if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'enemy') {
+				arr.push(possibleTargs[i]);
+			} else if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'empty') {
+				arr.push(possibleTargs[i]);
+			}
+		}
+		return arr;
 	}
 }

@@ -9,19 +9,17 @@ export default class Knight extends Piece {
 		this.targets = [];
 	}
 
-	getTargets(row, col) {
-		const origRow = Number(row);
-		const origCol = Number(col);
+	getTargets() {
 		this.targets = [];
 		this.possibleTargets = [
-			`${origRow - 2}${origCol - 1}`,
-			`${origRow - 2}${origCol + 1}`,
-			`${origRow - 1}${origCol - 2}`,
-			`${origRow - 1}${origCol + 2}`,
-			`${origRow + 1}${origCol - 2}`,
-			`${origRow + 1}${origCol + 2}`,
-			`${origRow + 2}${origCol - 1}`,
-			`${origRow + 2}${origCol + 1}`
+			`${+this.row - 2}${+this.col - 1}`,
+			`${+this.row - 2}${+this.col + 1}`,
+			`${+this.row - 1}${+this.col - 2}`,
+			`${+this.row - 1}${+this.col + 2}`,
+			`${+this.row + 1}${+this.col - 2}`,
+			`${+this.row + 1}${+this.col + 2}`,
+			`${+this.row + 2}${+this.col - 1}`,
+			`${+this.row + 2}${+this.col + 1}`
 		];
 		for (let i = 0; i < this.possibleTargets.length; i++) {
 			const newRow = this.possibleTargets[i][0];

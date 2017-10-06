@@ -8,14 +8,12 @@ export default class Rook extends Piece {
 		this.targets = [];
 	}
 
-	getTargets(row, col) { // check if it's the king
+	getTargets() { // check if it's the king
 		const targets = [];
-		const origCol = Number(col);
-		const origRow = Number(row);
-		const colFwdTargs = checkColForward(origRow, origCol);
-		const colBackTargs = checkColBackward(origRow, origCol);
-		const rowFwdTargs = checkRowForward(origRow, origCol);
-		const rowBackTargs = checkRowBackward(origRow, origCol);
+		const colFwdTargs = checkColForward(+this.row, +this.col);
+		const colBackTargs = checkColBackward(+this.row, +this.col);
+		const rowFwdTargs = checkRowForward(+this.row, +this.col);
+		const rowBackTargs = checkRowBackward(+this.row, +this.col);
 		targets.push(...colFwdTargs, ...colBackTargs, ...rowFwdTargs, ...rowBackTargs);
 		return targets;
 	}

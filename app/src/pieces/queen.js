@@ -13,10 +13,10 @@ export default class Queen extends Piece {
 		this.bishop = new Bishop();
 	}
 
-	getTargets(row, col) {
+	getTargets() {
 		this.targets = [];
-		const rookTargs = Rook.prototype.getTargets.call(this, row, col);
-		const bishopTargs = Bishop.prototype.getTargets.call(this, row, col);
+		const rookTargs = Rook.prototype.getTargets.call(this, this.row, this.col);
+		const bishopTargs = Bishop.prototype.getTargets.call(this, this.row, this.col);
 		this.targets.push(...rookTargs, ...bishopTargs);
 		return this.targets;
 	}

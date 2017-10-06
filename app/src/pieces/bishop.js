@@ -9,14 +9,12 @@ export default class Bishop extends Piece {
 		this.targets = [];
 	}
 
-	getTargets(row, col) {
+	getTargets() {
 		this.targets = [];
-		const origCol = Number(col);
-		const origRow = Number(row);
-		const northEastTargs = findNorthEastTargs(origRow, origCol);
-		const southWestTargs = findSouthWestTargs(origRow, origCol);
-		const northWestTargs = findNorthWestTargs(origRow, origCol);
-		const southEastTargs = findSouthEastTargs(origRow, origCol);
+		const northEastTargs = findNorthEastTargs(+this.row, +this.col);
+		const southWestTargs = findSouthWestTargs(+this.row, +this.col);
+		const northWestTargs = findNorthWestTargs(+this.row, +this.col);
+		const southEastTargs = findSouthEastTargs(+this.row, +this.col);
 		this.targets.push(...northEastTargs, ...southWestTargs, ...northWestTargs, ...southEastTargs);
 		return this.targets;
 	}
