@@ -103,7 +103,7 @@ export default class Board {
 		return false;
 	}
 
-	enemyTargets() {
+	getEnemyTargets() {
 		const arr = [];
 		for (let i = 0; i < BoardState.state.length; i++) {
 			for (let j = 0; j < BoardState.state[i].length; j++) {
@@ -113,6 +113,7 @@ export default class Board {
 				}
 			}
 		}
+		this.forCheck = false;
 		return arr;
 	}
 }

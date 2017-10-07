@@ -8,18 +8,18 @@ export default class Rook extends Piece {
 		this.targets = [];
 	}
 
-	getTargets() { // check if it's the king
+	getTargets(forCheck) { // check if it's the king
 		const targets = [];
-		const colFwdTargs = checkColForward(+this.row, +this.col);
-		const colBackTargs = checkColBackward(+this.row, +this.col);
-		const rowFwdTargs = checkRowForward(+this.row, +this.col);
-		const rowBackTargs = checkRowBackward(+this.row, +this.col);
+		const colFwdTargs = checkColForward(+this.row, +this.col, forCheck);
+		const colBackTargs = checkColBackward(+this.row, +this.col, forCheck);
+		const rowFwdTargs = checkRowForward(+this.row, +this.col, forCheck);
+		const rowBackTargs = checkRowBackward(+this.row, +this.col, forCheck);
 		targets.push(...colFwdTargs, ...colBackTargs, ...rowFwdTargs, ...rowBackTargs);
 		return targets;
 	}
 }
 
-function checkColForward(row, col) {
+function checkColForward(row, col, forCheck) {
 	const arr = [];
 	for (let i = col + 1; i < 8; i++) {
 		if (BoardState.describeSquare(row, i) === 'king') {
@@ -30,13 +30,17 @@ function checkColForward(row, col) {
 			arr.push(`${row}${i}`);
 			break;
 		} else if (BoardState.describeSquare(row, i) === 'ally') {
-			break;
+			if (forCheck) {
+				arr.push(`${row}${i}`);
+			} else {
+				break;
+			}
 		}
 	}
 	return arr;
 }
 
-function checkColBackward(row, col) {
+function checkColBackward(row, col, forCheck) {
 	const arr = [];
 	for (let i = col - 1; i >= 0; i--) {
 		if (BoardState.describeSquare(row, i) === 'king') {
@@ -47,13 +51,17 @@ function checkColBackward(row, col) {
 			arr.push(`${row}${i}`);
 			break;
 		} else if (BoardState.describeSquare(row, i) === 'ally') {
-			break;
+			if (forCheck) {
+				arr.push(`${row}${i}`);
+			} else {
+				break;
+			}
 		}
 	}
 	return arr;
 }
 
-function checkRowForward(row, col) {
+function checkRowForward(row, col, forCheck) {
 	const arr = [];
 	for (let i = row + 1; i < 8; i++) {
 		if (BoardState.describeSquare(i, col) === 'king') {
@@ -64,13 +72,17 @@ function checkRowForward(row, col) {
 			arr.push(`${i}${col}`);
 			break;
 		} else if (BoardState.describeSquare(i, col) === 'ally') {
-			break;
+			if (forCheck) {
+				arr.push(`${i}${col}`);
+			} else {
+				break;
+			}
 		}
 	}
 	return arr;
 }
 
-function checkRowBackward(row, col) {
+function checkRowBackward(row, col, forCheck) {
 	const arr = [];
 	for (let i = row - 1; i >= 0; i--) {
 		if (BoardState.describeSquare(i, col) === 'king') {
@@ -81,7 +93,11 @@ function checkRowBackward(row, col) {
 			arr.push(`${i}${col}`);
 			break;
 		} else if (BoardState.describeSquare(i, col) === 'ally') {
-			break;
+			if (forCheck) {
+				arr.push(`${i}${col}`);
+			} else {
+				break;
+			}
 		}
 	}
 	return arr;

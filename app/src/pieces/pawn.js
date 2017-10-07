@@ -16,24 +16,18 @@ export default class Pawn extends Piece {
 		const colLeft = `${+this.col - 1}`;
 		const colRight = `${+this.col + 1}`;
 		const colStr = `${+this.col}`;
-		if (BoardState.describeSquare(rowFwd, colLeft) === 'enemy') {
+		if (BoardState.describeSquare(rowFwd, colLeft) === 'enemy' || forCheck) {
 			arr.push(rowFwd + colLeft); // check for ally
 		}
-		if (BoardState.describeSquare(rowFwd, colRight) === 'enemy') {
+		if (BoardState.describeSquare(rowFwd, colRight) === 'enemy' || forCheck) {
 			arr.push(rowFwd + colRight); // check for ally
 		}
-		if (BoardState.describeSquare(rowFwd, colStr) === 'empty') {
+		if (BoardState.describeSquare(rowFwd, colStr) === 'empty' && !forCheck) {
 			arr.push(rowFwd + colStr);
 			if (this.firstTurn && BoardState.describeSquare(rowFwdTwo, colStr) === 'empty') {
 				arr.push(rowFwdTwo + colStr);
 			}
-			// if (this.firstTurn && BoardState.describeSquare(rowFwdTwo, colStr) === 'ally' && forCheck) {
-			// 	arr.push(rowFwdTwo + colStr);
-			// }
 		}
-		// if (forCheck && BoardState.describeSquare(rowFwd, colStr) === 'ally') {
-		// 	arr.push(rowFwd + colStr);
-		// }
 		return arr;
 	}
 

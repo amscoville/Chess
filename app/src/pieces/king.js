@@ -21,7 +21,7 @@ export default class King extends Piece {
 			`${+this.row - 1}${+this.col - 1}`
 		];
 		for (let i = 0; i < possibleTargs.length; i++) {
-			const enemyTargs = BoardState.enemyTargets();
+			const enemyTargs = BoardState.getEnemyTargets();
 			if (!enemyTargs.includes(possibleTargs[i])) {
 				if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'enemy') {
 					arr.push(possibleTargs[i]);

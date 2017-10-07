@@ -24,7 +24,7 @@ function handleSquareClick(event) {
 	} else if (!selectedPiece && BoardState.state[row][col]) { // click on square with piece
 		$('div').removeClass('originalSquare');
 		selectedPiece = BoardState.state[row][col];
-		const targets = selectedPiece.getTargets(row, col);
+		const targets = selectedPiece.getTargets(BoardState.forCheck);
 		highlightTargets(targets, row, col);
 	}
 }
@@ -45,9 +45,9 @@ function createBoard() {
 
 function displayPieces() {
 	for (let i = 0; i < 8; i++) {
-		// if (i === 1) {
-		// 	BoardState.state[i] = [];
-		// }
+		if (i === 1) {
+			BoardState.state[i] = [];
+		}
 		for (let j = 0; j < BoardState.state[i].length; j++) {
 			if (BoardState.state[i][j]) {
 				$(`#${BoardState.state[i][j].row}${BoardState.state[i][j].col}`).html(BoardState.state[i][j].img);

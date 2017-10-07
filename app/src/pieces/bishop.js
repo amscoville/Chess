@@ -10,17 +10,17 @@ export default class Bishop extends Piece {
 	}
 
 	getTargets(forCheck) {
-		this.targets = [];
+		const arr = [];
 		const northEastTargs = findNorthEastTargs(+this.row, +this.col, forCheck);
 		const southWestTargs = findSouthWestTargs(+this.row, +this.col, forCheck);
 		const northWestTargs = findNorthWestTargs(+this.row, +this.col, forCheck);
 		const southEastTargs = findSouthEastTargs(+this.row, +this.col, forCheck);
-		this.targets.push(...northEastTargs, ...southWestTargs, ...northWestTargs, ...southEastTargs);
-		return this.targets;
+		arr.push(...northEastTargs, ...southWestTargs, ...northWestTargs, ...southEastTargs);
+		return arr;
 	}
 }
 
-function findNorthEastTargs(row, col, forCheck) {
+function findSouthEastTargs(row, col, forCheck) {
 	const arr = [];
 	let newRow = row;
 	for (let i = col + 1; i < 8; i++) {
@@ -43,7 +43,7 @@ function findNorthEastTargs(row, col, forCheck) {
 	return arr;
 }
 
-function findSouthWestTargs(row, col, forCheck) {
+function findNorthWestTargs(row, col, forCheck) {
 	const arr = [];
 	let newRow = row;
 	for (let i = col - 1; i >= 0; i--) {
@@ -66,7 +66,7 @@ function findSouthWestTargs(row, col, forCheck) {
 	return arr;
 }
 
-function findNorthWestTargs(row, col, forCheck) {
+function findSouthWestTargs(row, col, forCheck) {
 	const arr = [];
 	let newRow = row;
 	for (let i = col - 1; i >= 0; i--) {
@@ -89,7 +89,7 @@ function findNorthWestTargs(row, col, forCheck) {
 	return arr;
 }
 
-function findSouthEastTargs(row, col, forCheck) {
+function findNorthEastTargs(row, col, forCheck) {
 	const arr = [];
 	let newRow = row;
 	for (let i = col + 1; i < 8; i++) {
