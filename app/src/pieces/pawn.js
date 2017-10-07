@@ -8,7 +8,7 @@ export default class Pawn extends Piece {
 		this.firstTurn = true;
 	}
 
-	getTargets() {
+	getTargets(forCheck) {
 		const arr = [];
 		const dir = this.color === 'white' ? -1 : 1;
 		const rowFwd = `${+this.row + dir}`;
@@ -27,6 +27,12 @@ export default class Pawn extends Piece {
 			if (this.firstTurn && BoardState.describeSquare(rowFwdTwo, colStr) === 'empty') {
 				arr.push(rowFwdTwo + colStr);
 			}
+			if (this.firstTurn && BoardState.describeSquare(rowFwdTwo, colStr) === 'ally' && forCheck) {
+				arr.push(rowFwdTwo + colStr);
+			}
+		}
+		if (forCheck && BoardState.describeSquare(rowFwd, colStr) === 'ally') {
+			arr.push(rowFwd + colStr);
 		}
 		return arr;
 	}

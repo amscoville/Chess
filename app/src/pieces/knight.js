@@ -9,8 +9,8 @@ export default class Knight extends Piece {
 		this.targets = [];
 	}
 
-	getTargets() {
-		this.targets = [];
+	getTargets(forCheck) {
+		const arr = [];
 		this.possibleTargets = [
 			`${+this.row - 2}${+this.col - 1}`,
 			`${+this.row - 2}${+this.col + 1}`,
@@ -27,13 +27,17 @@ export default class Knight extends Piece {
 			if (BoardState.describeSquare(newRow, newCol) === 'king') {
 				continue;
 			} else if (BoardState.describeSquare(newRow, newCol) === 'empty') {
-				this.targets.push(this.possibleTargets[i]);
+				arr.push(this.possibleTargets[i]);
 			} else if (BoardState.describeSquare(newRow, newCol) === 'enemy') {
-				this.targets.push(this.possibleTargets[i]);
+				arr.push(this.possibleTargets[i]);
 			} else if (BoardState.describeSquare(newRow, newCol) === 'ally') {
-				continue;
+				if (forCheck) {
+					arr.push(`${newRow}${i}`);
+				} else {
+					break;
+				}
 			}
 		}
-		return this.targets;
+		return arr;
 	}
 }

@@ -21,10 +21,13 @@ export default class King extends Piece {
 			`${+this.row - 1}${+this.col - 1}`
 		];
 		for (let i = 0; i < possibleTargs.length; i++) {
-			if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'enemy') {
-				arr.push(possibleTargs[i]);
-			} else if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'empty') {
-				arr.push(possibleTargs[i]);
+			const enemyTargs = BoardState.enemyTargets();
+			if (!enemyTargs.includes(possibleTargs[i])) {
+				if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'enemy') {
+					arr.push(possibleTargs[i]);
+				} else if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'empty') {
+					arr.push(possibleTargs[i]);
+				}
 			}
 		}
 		return arr;
