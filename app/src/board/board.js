@@ -106,7 +106,7 @@ export default class Board {
 	enemyTargets() {
 		const arr = [];
 		for (let i = 0; i < BoardState.state.length; i++) {
-			for (let j = 0; i < BoardState.state[i].length; j++) {
+			for (let j = 0; j < BoardState.state[i].length; j++) {
 				if (this.describeSquare(i, j) === 'enemy') {
 					this.forCheck = true;
 					arr.push(...BoardState.state[i][j].getTargets(this.forCheck));

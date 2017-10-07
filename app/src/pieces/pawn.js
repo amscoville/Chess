@@ -8,7 +8,7 @@ export default class Pawn extends Piece {
 		this.firstTurn = true;
 	}
 
-	getTargets(forCheck) {
+	getTargets(forCheck) { // figure out where to check squares for check
 		const arr = [];
 		const dir = this.color === 'white' ? -1 : 1;
 		const rowFwd = `${+this.row + dir}`;
@@ -17,23 +17,23 @@ export default class Pawn extends Piece {
 		const colRight = `${+this.col + 1}`;
 		const colStr = `${+this.col}`;
 		if (BoardState.describeSquare(rowFwd, colLeft) === 'enemy') {
-			arr.push(rowFwd + colLeft);
+			arr.push(rowFwd + colLeft); // check for ally
 		}
 		if (BoardState.describeSquare(rowFwd, colRight) === 'enemy') {
-			arr.push(rowFwd + colRight);
+			arr.push(rowFwd + colRight); // check for ally
 		}
 		if (BoardState.describeSquare(rowFwd, colStr) === 'empty') {
 			arr.push(rowFwd + colStr);
 			if (this.firstTurn && BoardState.describeSquare(rowFwdTwo, colStr) === 'empty') {
 				arr.push(rowFwdTwo + colStr);
 			}
-			if (this.firstTurn && BoardState.describeSquare(rowFwdTwo, colStr) === 'ally' && forCheck) {
-				arr.push(rowFwdTwo + colStr);
-			}
+			// if (this.firstTurn && BoardState.describeSquare(rowFwdTwo, colStr) === 'ally' && forCheck) {
+			// 	arr.push(rowFwdTwo + colStr);
+			// }
 		}
-		if (forCheck && BoardState.describeSquare(rowFwd, colStr) === 'ally') {
-			arr.push(rowFwd + colStr);
-		}
+		// if (forCheck && BoardState.describeSquare(rowFwd, colStr) === 'ally') {
+		// 	arr.push(rowFwd + colStr);
+		// }
 		return arr;
 	}
 
