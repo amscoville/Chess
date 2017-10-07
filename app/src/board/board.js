@@ -87,8 +87,7 @@ export default class Board {
 	}
 
 	isEnemy(row, col) {
-		return this.state[row][col].color === 'white'; // change after implementing turns
-		// return this.state[row][col].color !== this.turn;
+		return this.state[row][col].color !== this.turn;
 	}
 
 	isKing(row, col) {

@@ -21,7 +21,7 @@ function handleSquareClick(event) {
 		movePiece(row, col);
 		$('div').removeClass('highlight');
 		selectedPiece = null;
-	} else if (!selectedPiece && BoardState.state[row][col]) { // click on square with piece
+	} else if (!selectedPiece && BoardState.state[row][col].color === BoardState.turn) {
 		$('div').removeClass('originalSquare');
 		selectedPiece = BoardState.state[row][col];
 		const targets = selectedPiece.getTargets(BoardState.forCheck);
@@ -45,9 +45,9 @@ function createBoard() {
 
 function displayPieces() {
 	for (let i = 0; i < 8; i++) {
-		if (i === 1) {
-			BoardState.state[i] = [];
-		}
+		// if (i === 1) {
+		// 	BoardState.state[i] = [];
+		// }
 		for (let j = 0; j < BoardState.state[i].length; j++) {
 			if (BoardState.state[i][j]) {
 				$(`#${BoardState.state[i][j].row}${BoardState.state[i][j].col}`).html(BoardState.state[i][j].img);
@@ -69,12 +69,15 @@ function highlightTargets(arr, row, col) {
 	}
 }
 
-function movePiece(row, col) {
+function movePiece(row, col) { // still breaking after clicking self!!!!!
 	const originalSpot = $(`#${selectedPiece.row}${selectedPiece.col}`);
 	const targetSpot = $(`#${row}${col}`);
 	if (`#${selectedPiece.row}${selectedPiece.col}` !== `#${row}${col}`) {
 		targetSpot.html(selectedPiece.img);
 		originalSpot.html('');
 		selectedPiece.move(row, col);
+		BoardState.turn = BoardState.turn === 'black' ? 'white' : 'black';
+	} else {
+		BoardState.turn = BoardState.turn === 'black';
 	}
 }
