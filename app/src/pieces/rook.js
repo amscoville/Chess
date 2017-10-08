@@ -30,7 +30,7 @@ function checkColForward(row, col, forCheck) {
 			arr.push(`${row}${i}`);
 			break;
 		} else if (BoardState.describeSquare(row, i) === 'ally') {
-			if (forCheck) {
+			if (forCheck === true) {
 				arr.push(`${row}${i}`);
 			} else {
 				break;
@@ -51,7 +51,7 @@ function checkColBackward(row, col, forCheck) {
 			arr.push(`${row}${i}`);
 			break;
 		} else if (BoardState.describeSquare(row, i) === 'ally') {
-			if (forCheck) {
+			if (forCheck === true) {
 				arr.push(`${row}${i}`);
 			} else {
 				break;
@@ -72,7 +72,7 @@ function checkRowForward(row, col, forCheck) {
 			arr.push(`${i}${col}`);
 			break;
 		} else if (BoardState.describeSquare(i, col) === 'ally') {
-			if (forCheck) {
+			if (forCheck === true) {
 				arr.push(`${i}${col}`);
 			} else {
 				break;
@@ -93,7 +93,7 @@ function checkRowBackward(row, col, forCheck) {
 			arr.push(`${i}${col}`);
 			break;
 		} else if (BoardState.describeSquare(i, col) === 'ally') {
-			if (forCheck) {
+			if (forCheck === true) {
 				arr.push(`${i}${col}`);
 			} else {
 				break;

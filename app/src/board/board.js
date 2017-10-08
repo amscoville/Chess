@@ -54,7 +54,7 @@ export default class Board {
 				new Rook('white', 7, 7)
 			]
 		];
-		this.turn = 'black';
+		this.turn = 'white';
 		this.forCheck = false;
 	}
 

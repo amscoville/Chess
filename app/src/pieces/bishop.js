@@ -33,7 +33,7 @@ function findSouthEastTargs(row, col, forCheck) {
 			arr.push(`${newRow}${i}`);
 			break;
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			if (forCheck) {
+			if (forCheck === true) {
 				arr.push(`${newRow}${i}`);
 			} else {
 				break;
@@ -56,7 +56,7 @@ function findNorthWestTargs(row, col, forCheck) {
 			arr.push(`${newRow}${i}`);
 			break;
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			if (forCheck) {
+			if (forCheck === true) {
 				arr.push(`${newRow}${i}`);
 			} else {
 				break;
@@ -79,7 +79,7 @@ function findSouthWestTargs(row, col, forCheck) {
 			arr.push(`${newRow}${i}`);
 			break;
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			if (forCheck) {
+			if (forCheck === true) {
 				arr.push(`${newRow}${i}`);
 			} else {
 				break;
@@ -102,7 +102,7 @@ function findNorthEastTargs(row, col, forCheck) {
 			arr.push(`${newRow}${i}`);
 			break;
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			if (forCheck) {
+			if (forCheck === true) {
 				arr.push(`${newRow}${i}`);
 			} else {
 				break;
