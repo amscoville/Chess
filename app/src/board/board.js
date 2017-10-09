@@ -117,4 +117,8 @@ export default class Board {
 		this.forCheck = false;
 		return arr;
 	}
+
+	changeTurn() {
+		this.turn = this.turn === 'white' ? 'black' : 'white';
+	}
 }

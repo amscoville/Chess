@@ -48,9 +48,6 @@ function createBoard() {
 
 function displayPieces() {
 	for (let i = 0; i < 8; i++) {
-		// if (i === 1) {
-		// 	BoardState.state[i] = [];
-		// }
 		for (let j = 0; j < BoardState.state[i].length; j++) {
 			if (BoardState.state[i][j]) {
 				$(`#${BoardState.state[i][j].row}${BoardState.state[i][j].col}`).html(BoardState.state[i][j].img);
@@ -78,5 +75,5 @@ function movePiece(row, col) { // still breaking after clicking self!!!!!
 	targetSpot.html(selectedPiece.img);
 	originalSpot.html('');
 	selectedPiece.move(row, col);
-	BoardState.turn = BoardState.turn === 'white' ? 'black' : 'white';
+	BoardState.changeTurn();
 }
