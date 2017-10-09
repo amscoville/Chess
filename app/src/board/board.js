@@ -70,6 +70,8 @@ export default class Board {
 			return 'invalid';
 		} else if (!this.pieceOnSpace(row, col)) {
 			return 'empty';
+		} else if (this.isKing(row, col) && this.isEnemy(row, col)) {
+			return 'enemyKing';
 		} else if (this.isKing(row, col)) {
 			return 'king';
 		} else if (this.isEnemy(row, col)) {
@@ -106,7 +108,7 @@ export default class Board {
 		const arr = [];
 		for (let i = 0; i < BoardState.state.length; i++) {
 			for (let j = 0; j < BoardState.state[i].length; j++) {
-				if (this.describeSquare(i, j) === 'enemy') {
+				if (this.describeSquare(i, j) === 'enemy' || this.describeSquare(i, j) === 'enemyKing') {
 					this.forCheck = true;
 					arr.push(...BoardState.state[i][j].getTargets(this.forCheck));
 				}

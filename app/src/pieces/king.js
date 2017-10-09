@@ -8,7 +8,7 @@ export default class King extends Piece {
 		super(color, row, col, img);
 	}
 
-	getTargets() {
+	getTargets(forCheck) {
 		const arr = [];
 		const possibleTargs = [
 			`${+this.row - 1}${this.col}`,
@@ -21,13 +21,17 @@ export default class King extends Piece {
 			`${+this.row - 1}${+this.col - 1}`
 		];
 		for (let i = 0; i < possibleTargs.length; i++) {
-			const enemyTargs = BoardState.getEnemyTargets();
-			if (!enemyTargs.includes(possibleTargs[i])) {
-				if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'enemy') {
-					arr.push(possibleTargs[i]);
-				} else if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'empty') {
-					arr.push(possibleTargs[i]);
+			if (forCheck === false) {
+				const enemyTargs = BoardState.getEnemyTargets();
+				if (!enemyTargs.includes(possibleTargs[i])) {
+					if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'enemy') {
+						arr.push(possibleTargs[i]);
+					} else if (BoardState.describeSquare(possibleTargs[i][0], possibleTargs[i][1]) === 'empty') {
+						arr.push(possibleTargs[i]);
+					}
 				}
+			} else if (forCheck === true) {
+				arr.push(possibleTargs[i]);
 			}
 		}
 		return arr;
