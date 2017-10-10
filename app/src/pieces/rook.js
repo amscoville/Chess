@@ -30,7 +30,6 @@ function checkColPlus(row, col, forCheck) {
 			if (forCheck === true) {
 				continue;
 			} else {
-				arr.push(`${row}${i}`);
 				break;
 			}
 		} else if (BoardState.describeSquare(row, i) === 'ally') {
@@ -52,7 +51,6 @@ function checkColMinus(row, col, forCheck) {
 			if (forCheck === true) {
 				continue;
 			} else {
-				arr.push(`${row}${i}`);
 				break;
 			}
 		} else if (BoardState.describeSquare(row, i) === 'ally') {
@@ -74,7 +72,6 @@ function checkRowPlus(row, col, forCheck) {
 			if (forCheck === true) {
 				continue;
 			} else {
-				arr.push(`${i}${col}`);
 				break;
 			}
 		} else if (BoardState.describeSquare(i, col) === 'ally') {
@@ -96,7 +93,6 @@ function checkRowMinus(row, col, forCheck) {
 			if (forCheck === true) {
 				continue;
 			} else {
-				arr.push(`${i}${col}`);
 				break;
 			}
 		} else if (BoardState.describeSquare(i, col) === 'ally') {

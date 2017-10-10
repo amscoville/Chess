@@ -44,7 +44,6 @@ function findSouthEastTargs(row, col, forCheck) {
 				arr.push(`${newRow}${i}`);
 				break;
 			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
-				arr.push(`${newRow}${i}`);
 				break;
 			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
 				break;
@@ -81,7 +80,6 @@ function findNorthWestTargs(row, col, forCheck) {
 				arr.push(`${newRow}${i}`);
 				break;
 			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
-				arr.push(`${newRow}${i}`);
 				break;
 			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
 				break;
@@ -118,7 +116,6 @@ function findSouthWestTargs(row, col, forCheck) {
 				arr.push(`${newRow}${i}`);
 				break;
 			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
-				arr.push(`${newRow}${i}`);
 				break;
 			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
 				break;
@@ -155,7 +152,6 @@ function findNorthEastTargs(row, col, forCheck) {
 				arr.push(`${newRow}${i}`);
 				break;
 			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
-				arr.push(`${newRow}${i}`);
 				break;
 			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
 				break;
