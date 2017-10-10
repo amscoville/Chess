@@ -58,23 +58,22 @@ export default class Board {
 		this.forCheck = false;
 	}
 
-	checkTarget(target, piece) {
-		if (piece.attr('id') !== target.attr('id')) {
-			return true;
-		}
-		return false;
-	}
+	// checkTarget(target, piece) {
+	// 	if (piece.attr('id') !== target.attr('id')) {
+	// 		return true;
+	// 	}
+	// 	return false;
+	// }
 
 	describeSquare(row, col) {
 		if (!this.isOnTheBoard(row, col)) {
 			return 'invalid';
 		} else if (!this.pieceOnSpace(row, col)) {
 			return 'empty';
-		} else if (this.isKing(row, col) && this.isEnemy(row, col)) {
-			return 'enemyKing';
-		} else if (this.isKing(row, col)) {
-			return 'king';
 		} else if (this.isEnemy(row, col)) {
+			if (this.isKing(row, col)) {
+				return 'enemyKing';
+			}
 			return 'enemy';
 		}
 		return 'ally';

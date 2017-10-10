@@ -6,7 +6,6 @@ export default class Knight extends Piece {
 	constructor(color, row, col) {
 		const img = color === 'white' ? '2658' : '265E';
 		super(color, row, col, img);
-		this.targets = [];
 	}
 
 	getTargets(forCheck) {
@@ -25,9 +24,10 @@ export default class Knight extends Piece {
 			if (possibleTargets[i].length < 3) {
 				const newRow = possibleTargets[i][0];
 				const newCol = possibleTargets[i][1];
-				if (BoardState.describeSquare(newRow, newCol) === 'king') {
-					continue;
-				} else if (BoardState.describeSquare(newRow, newCol) === 'empty') {
+				// if (BoardState.describeSquare(newRow, newCol) === 'king') {
+				// 	continue;
+				// } else
+				if (BoardState.describeSquare(newRow, newCol) === 'empty') {
 					arr.push(possibleTargets[i]);
 				} else if (BoardState.describeSquare(newRow, newCol) === 'enemy') {
 					arr.push(possibleTargets[i]);

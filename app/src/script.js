@@ -24,8 +24,7 @@ function handleSquareClick(event) {
 	} else if (selectedPiece === BoardState.state[row][col]) {
 		$('div').removeClass('highlight');
 		selectedPiece = null;
-	} else if (!selectedPiece && BoardState.state[row][col].color === BoardState.turn) {
-		$('div').removeClass('originalSquare');
+	} else if (BoardState.state[row][col].color === BoardState.turn) {
 		selectedPiece = BoardState.state[row][col];
 		const targets = selectedPiece.getTargets(BoardState.forCheck);
 		highlightTargets(targets, row, col);

@@ -6,7 +6,6 @@ export default class Bishop extends Piece {
 	constructor(color, row, col) {
 		const img = color === 'white' ? '2657' : '265D';
 		super(color, row, col, img);
-		this.targets = [];
 	}
 
 	getTargets(forCheck) {
@@ -25,13 +24,13 @@ function findSouthEastTargs(row, col, forCheck) {
 	let newRow = row;
 	for (let i = col + 1; i < 8; i++) {
 		newRow++;
-		if (BoardState.describeSquare(newRow, i) === 'king') {
-			break;
-		} else if (BoardState.describeSquare(newRow, i) === 'empty') {
+		if (BoardState.describeSquare(newRow, i) === 'empty') {
 			arr.push(`${newRow}${i}`);
 		} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
 			arr.push(`${newRow}${i}`);
 			break;
+		} else if (forCheck === true && BoardState.describeSquare(newRow, i) === 'enemyKing') {
+			arr.push(`${newRow}${i}`);
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${newRow}${i}`);
@@ -48,13 +47,13 @@ function findNorthWestTargs(row, col, forCheck) {
 	let newRow = row;
 	for (let i = col - 1; i >= 0; i--) {
 		newRow--;
-		if (BoardState.describeSquare(newRow, i) === 'king') {
-			break;
-		} else if (BoardState.describeSquare(newRow, i) === 'empty') {
+		if (BoardState.describeSquare(newRow, i) === 'empty') {
 			arr.push(`${newRow}${i}`);
 		} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
 			arr.push(`${newRow}${i}`);
 			break;
+		} else if (forCheck === true && BoardState.describeSquare(newRow, i) === 'enemyKing') {
+			arr.push(`${newRow}${i}`);
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${newRow}${i}`);
@@ -71,13 +70,13 @@ function findSouthWestTargs(row, col, forCheck) {
 	let newRow = row;
 	for (let i = col - 1; i >= 0; i--) {
 		newRow++;
-		if (BoardState.describeSquare(newRow, i) === 'king') {
-			break;
-		} else if (BoardState.describeSquare(newRow, i) === 'empty') {
+		if (BoardState.describeSquare(newRow, i) === 'empty') {
 			arr.push(`${newRow}${i}`);
 		} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
 			arr.push(`${newRow}${i}`);
 			break;
+		} else if (forCheck === true && BoardState.describeSquare(newRow, i) === 'enemyKing') {
+			arr.push(`${newRow}${i}`);
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${newRow}${i}`);
@@ -94,13 +93,13 @@ function findNorthEastTargs(row, col, forCheck) {
 	let newRow = row;
 	for (let i = col + 1; i < 8; i++) {
 		newRow--;
-		if (BoardState.describeSquare(newRow, i) === 'king') {
-			break;
-		} else if (BoardState.describeSquare(newRow, i) === 'empty') {
+		if (BoardState.describeSquare(newRow, i) === 'empty') {
 			arr.push(`${newRow}${i}`);
 		} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
 			arr.push(`${newRow}${i}`);
 			break;
+		} else if (forCheck === true && BoardState.describeSquare(newRow, i) === 'enemyKing') {
+			arr.push(`${newRow}${i}`);
 		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${newRow}${i}`);

@@ -5,10 +5,9 @@ export default class Rook extends Piece {
 	constructor(color, row, col) {
 		const img = color === 'white' ? '2656' : '265C';
 		super(color, row, col, img);
-		this.targets = [];
 	}
 
-	getTargets(forCheck) { // check if it's the king
+	getTargets(forCheck) {
 		const targets = [];
 		const colFwdTargs = checkColForward(+this.row, +this.col, forCheck);
 		const colBackTargs = checkColBackward(+this.row, +this.col, forCheck);
@@ -22,13 +21,13 @@ export default class Rook extends Piece {
 function checkColForward(row, col, forCheck) {
 	const arr = [];
 	for (let i = col + 1; i < 8; i++) {
-		if (BoardState.describeSquare(row, i) === 'king') {
-			break;
-		} else if (BoardState.describeSquare(row, i) === 'empty') {
+		if (BoardState.describeSquare(row, i) === 'empty') {
 			arr.push(`${row}${i}`);
 		} else if (BoardState.describeSquare(row, i) === 'enemy') {
 			arr.push(`${row}${i}`);
 			break;
+		} else if (forCheck === true && BoardState.describeSquare(row, i) === 'enemyKing') {
+			arr.push(`${row}${i}`);
 		} else if (BoardState.describeSquare(row, i) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${row}${i}`);
@@ -43,13 +42,13 @@ function checkColForward(row, col, forCheck) {
 function checkColBackward(row, col, forCheck) {
 	const arr = [];
 	for (let i = col - 1; i >= 0; i--) {
-		if (BoardState.describeSquare(row, i) === 'king') {
-			break;
-		} else if (BoardState.describeSquare(row, i) === 'empty') {
+		if (BoardState.describeSquare(row, i) === 'empty') {
 			arr.push(`${row}${i}`);
 		} else if (BoardState.describeSquare(row, i) === 'enemy') {
 			arr.push(`${row}${i}`);
 			break;
+		} else if (forCheck === true && BoardState.describeSquare(row, i) === 'enemyKing') {
+			arr.push(`${row}${i}`);
 		} else if (BoardState.describeSquare(row, i) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${row}${i}`);
@@ -64,13 +63,13 @@ function checkColBackward(row, col, forCheck) {
 function checkRowForward(row, col, forCheck) {
 	const arr = [];
 	for (let i = row + 1; i < 8; i++) {
-		if (BoardState.describeSquare(i, col) === 'king') {
-			break;
-		} else if (BoardState.describeSquare(i, col) === 'empty') {
+		if (BoardState.describeSquare(i, col) === 'empty') {
 			arr.push(`${i}${col}`);
 		} else if (BoardState.describeSquare(i, col) === 'enemy') {
 			arr.push(`${i}${col}`);
 			break;
+		} else if (forCheck === true && BoardState.describeSquare(i, col) === 'enemyKing') {
+			arr.push(`${i}${col}`);
 		} else if (BoardState.describeSquare(i, col) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${i}${col}`);
@@ -85,13 +84,13 @@ function checkRowForward(row, col, forCheck) {
 function checkRowBackward(row, col, forCheck) {
 	const arr = [];
 	for (let i = row - 1; i >= 0; i--) {
-		if (BoardState.describeSquare(i, col) === 'king') {
-			break;
-		} else if (BoardState.describeSquare(i, col) === 'empty') {
+		if (BoardState.describeSquare(i, col) === 'empty') {
 			arr.push(`${i}${col}`);
 		} else if (BoardState.describeSquare(i, col) === 'enemy') {
 			arr.push(`${i}${col}`);
 			break;
+		} else if (forCheck === true && BoardState.describeSquare(i, col) === 'enemyKing') {
+			arr.push(`${i}${col}`);
 		} else if (BoardState.describeSquare(i, col) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${i}${col}`);
