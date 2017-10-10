@@ -24,17 +24,31 @@ function findSouthEastTargs(row, col, forCheck) {
 	let newRow = row;
 	for (let i = col + 1; i < 8; i++) {
 		newRow++;
-		if (BoardState.describeSquare(newRow, i) === 'empty') {
-			arr.push(`${newRow}${i}`);
-		} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
-			arr.push(`${newRow}${i}`);
-			break;
-		} else if (forCheck === true && BoardState.describeSquare(newRow, i) === 'enemyKing') {
-			arr.push(`${newRow}${i}`);
-		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			if (forCheck === true) {
+		if (forCheck === true) {
+			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(`${newRow}${i}`);
-			} else {
+			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'invalid') {
+				break;
+			}
+		} else if (forCheck === false) {
+			if (BoardState.describeSquare(newRow, i) === 'empty') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'invalid') {
 				break;
 			}
 		}
@@ -45,19 +59,33 @@ function findSouthEastTargs(row, col, forCheck) {
 function findNorthWestTargs(row, col, forCheck) {
 	const arr = [];
 	let newRow = row;
-	for (let i = col - 1; i >= 0; i--) {
+	for (let i = col - 1; i < 8; i--) {
 		newRow--;
-		if (BoardState.describeSquare(newRow, i) === 'empty') {
-			arr.push(`${newRow}${i}`);
-		} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
-			arr.push(`${newRow}${i}`);
-			break;
-		} else if (forCheck === true && BoardState.describeSquare(newRow, i) === 'enemyKing') {
-			arr.push(`${newRow}${i}`);
-		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			if (forCheck === true) {
+		if (forCheck === true) {
+			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(`${newRow}${i}`);
-			} else {
+			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'invalid') {
+				break;
+			}
+		} else if (forCheck === false) {
+			if (BoardState.describeSquare(newRow, i) === 'empty') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'invalid') {
 				break;
 			}
 		}
@@ -70,17 +98,31 @@ function findSouthWestTargs(row, col, forCheck) {
 	let newRow = row;
 	for (let i = col - 1; i >= 0; i--) {
 		newRow++;
-		if (BoardState.describeSquare(newRow, i) === 'empty') {
-			arr.push(`${newRow}${i}`);
-		} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
-			arr.push(`${newRow}${i}`);
-			break;
-		} else if (forCheck === true && BoardState.describeSquare(newRow, i) === 'enemyKing') {
-			arr.push(`${newRow}${i}`);
-		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			if (forCheck === true) {
+		if (forCheck === true) {
+			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(`${newRow}${i}`);
-			} else {
+			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'invalid') {
+				break;
+			}
+		} else if (forCheck === false) {
+			if (BoardState.describeSquare(newRow, i) === 'empty') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'invalid') {
 				break;
 			}
 		}
@@ -93,17 +135,31 @@ function findNorthEastTargs(row, col, forCheck) {
 	let newRow = row;
 	for (let i = col + 1; i < 8; i++) {
 		newRow--;
-		if (BoardState.describeSquare(newRow, i) === 'empty') {
-			arr.push(`${newRow}${i}`);
-		} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
-			arr.push(`${newRow}${i}`);
-			break;
-		} else if (forCheck === true && BoardState.describeSquare(newRow, i) === 'enemyKing') {
-			arr.push(`${newRow}${i}`);
-		} else if (BoardState.describeSquare(newRow, i) === 'ally') {
-			if (forCheck === true) {
+		if (forCheck === true) {
+			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(`${newRow}${i}`);
-			} else {
+			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'invalid') {
+				break;
+			}
+		} else if (forCheck === false) {
+			if (BoardState.describeSquare(newRow, i) === 'empty') {
+				arr.push(`${newRow}${i}`);
+			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
+				arr.push(`${newRow}${i}`);
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'ally') {
+				break;
+			} else if (BoardState.describeSquare(newRow, i) === 'invalid') {
 				break;
 			}
 		}

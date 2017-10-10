@@ -18,6 +18,28 @@ export default class Rook extends Piece {
 	}
 }
 
+// function checkColForward(row, col, forCheck) {
+// 	const arr = [];
+// 	for (let i = col + 1; i < 8; i++) {
+// 		if (BoardState.describeSquare(row, i) === 'empty') {
+// 			arr.push(`${row}${i}`);
+// 		} else if (BoardState.describeSquare(row, i) === 'enemy') {
+// 			arr.push(`${row}${i}`);
+// 			break;
+// 		} else if (forCheck === true && BoardState.describeSquare(row, i) === 'enemyKing') {
+// 			arr.push(`${row}${i}`);
+// 			break;
+// 		} else if (BoardState.describeSquare(row, i) === 'ally') {
+// 			if (forCheck === true) {
+// 				arr.push(`${row}${i}`);
+// 			} else {
+// 				break;
+// 			}
+// 		}
+// 	}
+// 	return arr;
+// }
+
 function checkColForward(row, col, forCheck) {
 	const arr = [];
 	for (let i = col + 1; i < 8; i++) {
@@ -27,10 +49,17 @@ function checkColForward(row, col, forCheck) {
 			arr.push(`${row}${i}`);
 			break;
 		} else if (forCheck === true && BoardState.describeSquare(row, i) === 'enemyKing') {
-			arr.push(`${row}${i}`);
+			if (forCheck === true) {
+				arr.push(`${row}${i}`);
+				continue;
+			} else {
+				arr.push(`${row}${i}`);
+				break;
+			}
 		} else if (BoardState.describeSquare(row, i) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${row}${i}`);
+				break;
 			} else {
 				break;
 			}
@@ -49,6 +78,7 @@ function checkColBackward(row, col, forCheck) {
 			break;
 		} else if (forCheck === true && BoardState.describeSquare(row, i) === 'enemyKing') {
 			arr.push(`${row}${i}`);
+			break;
 		} else if (BoardState.describeSquare(row, i) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${row}${i}`);
@@ -70,6 +100,7 @@ function checkRowForward(row, col, forCheck) {
 			break;
 		} else if (forCheck === true && BoardState.describeSquare(i, col) === 'enemyKing') {
 			arr.push(`${i}${col}`);
+			break;
 		} else if (BoardState.describeSquare(i, col) === 'ally') {
 			if (forCheck === true) {
 				arr.push(`${i}${col}`);
