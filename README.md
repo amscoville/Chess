@@ -2,14 +2,19 @@
 
 Build a chess game using ES6 class syntax.
 
-### Initial Game Board
-![initial game board](./readme-images/main.png)
+### Initial Gameboard
+<!-- ![initial game board](./readme-images/main.png) -->
+<img alt="initial-gameboard" src="./readme-images/main.png" width="300" height="300">
 
 ### Knight Move Options
-![knight](./readme-images/knight.png)
+<!-- ![knight](./readme-images/knight.png) -->
+<img alt="knight" src="./readme-images/knight.png" width="300" height="300">
+
 
 ### Queen Move Options
-![queen](./readme-images/queen.png)
+<!-- ![queen](./readme-images/queen.png) -->
+<img alt="queen" src="./readme-images/queen.png" width="300" height="300">
+
 
 # Technologies Used
 * HTML
