@@ -27,7 +27,7 @@ function checkColPlus(row, col, forCheck) {
 			arr.push(`${row}${i}`);
 			break;
 		} else if (BoardState.describeSquare(row, i) === 'enemyKing') {
-			if (forCheck === true) {
+			if (forCheck) {
 				continue;
 			} else {
 				break;
@@ -48,7 +48,7 @@ function checkColMinus(row, col, forCheck) {
 			arr.push(`${row}${i}`);
 			break;
 		} else if (BoardState.describeSquare(row, i) === 'enemyKing') {
-			if (forCheck === true) {
+			if (forCheck) {
 				continue;
 			} else {
 				break;
@@ -69,7 +69,7 @@ function checkRowPlus(row, col, forCheck) {
 			arr.push(`${i}${col}`);
 			break;
 		} else if (BoardState.describeSquare(i, col) === 'enemyKing') {
-			if (forCheck === true) {
+			if (forCheck) {
 				continue;
 			} else {
 				break;
@@ -90,7 +90,7 @@ function checkRowMinus(row, col, forCheck) {
 			arr.push(`${i}${col}`);
 			break;
 		} else if (BoardState.describeSquare(i, col) === 'enemyKing') {
-			if (forCheck === true) {
+			if (forCheck) {
 				continue;
 			} else {
 				break;

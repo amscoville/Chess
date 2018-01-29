@@ -68,7 +68,7 @@ function highlightTargets(arr, row, col) {
 	}
 }
 
-function movePiece(row, col) { // still breaking after clicking self!!!!!
+function movePiece(row, col) {
 	const originalSpot = $(`#${selectedPiece.row}${selectedPiece.col}`);
 	const targetSpot = $(`#${row}${col}`);
 	targetSpot.html(selectedPiece.img);

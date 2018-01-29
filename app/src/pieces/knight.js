@@ -29,7 +29,7 @@ export default class Knight extends Piece {
 				} else if (BoardState.describeSquare(newRow, newCol) === 'enemy') {
 					arr.push(possibleTargets[i]);
 				} else if (BoardState.describeSquare(newRow, newCol) === 'ally') {
-					if (forCheck === true) {
+					if (forCheck) {
 						arr.push(possibleTargets[i]);
 					} else {
 						continue;

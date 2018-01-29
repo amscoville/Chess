@@ -96,7 +96,7 @@ function findSouthWestTargs(row, col, forCheck) {
 	let newRow = row;
 	for (let i = col - 1; i >= 0; i--) {
 		newRow++;
-		if (forCheck === true) {
+		if (forCheck) {
 			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(`${newRow}${i}`);
 			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
@@ -109,7 +109,7 @@ function findSouthWestTargs(row, col, forCheck) {
 			} else if (BoardState.describeSquare(newRow, i) === 'invalid') {
 				break;
 			}
-		} else if (forCheck === false) {
+		} else if (!forCheck) {
 			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(`${newRow}${i}`);
 			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {
@@ -132,7 +132,7 @@ function findNorthEastTargs(row, col, forCheck) {
 	let newRow = row;
 	for (let i = col + 1; i < 8; i++) {
 		newRow--;
-		if (forCheck === true) {
+		if (forCheck) {
 			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(`${newRow}${i}`);
 			} else if (BoardState.describeSquare(newRow, i) === 'enemyKing') {
@@ -145,7 +145,7 @@ function findNorthEastTargs(row, col, forCheck) {
 			} else if (BoardState.describeSquare(newRow, i) === 'invalid') {
 				break;
 			}
-		} else if (forCheck === false) {
+		} else if (!forCheck) {
 			if (BoardState.describeSquare(newRow, i) === 'empty') {
 				arr.push(`${newRow}${i}`);
 			} else if (BoardState.describeSquare(newRow, i) === 'enemy') {

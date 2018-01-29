@@ -16,10 +16,10 @@ export default class Pawn extends Piece {
 		const colLeft = `${+this.col - 1}`;
 		const colRight = `${+this.col + 1}`;
 		const colStr = `${+this.col}`;
-		if (forCheck === true) {
+		if (forCheck) {
 			arr.push(rowFwd + colLeft);
 			arr.push(rowFwd + colRight);
-		} else if (forCheck === false) {
+		} else if (!forCheck) {
 			if (BoardState.describeSquare(rowFwd, colStr) === 'empty') {
 				arr.push(rowFwd + colStr);
 				if (this.firstTurn && BoardState.describeSquare(rowFwdTwo, colStr) === 'empty') {
