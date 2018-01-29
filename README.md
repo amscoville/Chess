@@ -2,6 +2,8 @@
 
 Build a simple chess game using ES6 class syntax. Implement turns. Only allow pieces to move to empty spaces or capture enemy pieces. Do not allow the king to move into check.
 
+During a turn, when a user clicks on one of their pieces, the spaces they can move to are highlighted. Clicking on a highlighted space moves the piece and ends the turn.
+
 ### Initial Gameboard
 <!-- ![initial game board](./readme-images/main.png) -->
 <img alt="initial-gameboard" src="./readme-images/main.png" width="400" height="400">
@@ -93,5 +95,5 @@ export default class Knight extends Piece {
 ```
 # Future Ideas
 
-Implement castling and en passant and handle a win or loss.
+Implement castling and en passant. Handle a win or loss.
 
