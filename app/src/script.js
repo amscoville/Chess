@@ -1,5 +1,4 @@
 import BoardState from './board/boardState';
-// import Piece from './pieces/piece';
 
 require('../styles/chess.css');
 

@@ -21,7 +21,7 @@ export default class Knight extends Piece {
 			`${+this.row + 2}${+this.col + 1}`
 		];
 		for (let i = 0; i < possibleTargets.length; i++) {
-			if (possibleTargets[i].length < 3) {
+			if (possibleTargets[i].length < 3) { // prevent negative numbers
 				const newRow = possibleTargets[i][0];
 				const newCol = possibleTargets[i][1];
 				if (BoardState.describeSquare(newRow, newCol) === 'empty') {

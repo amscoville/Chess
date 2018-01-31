@@ -58,13 +58,6 @@ export default class Board {
 		this.forCheck = false;
 	}
 
-	// checkTarget(target, piece) {
-	// 	if (piece.attr('id') !== target.attr('id')) {
-	// 		return true;
-	// 	}
-	// 	return false;
-	// }
-
 	describeSquare(row, col) {
 		if (!this.isOnTheBoard(row, col)) {
 			return 'invalid';
