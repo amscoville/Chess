@@ -5,16 +5,16 @@ Build a simple chess game using ES6 class syntax. Implement turns. Only allow pi
 During a turn, when a user clicks on one of their pieces, the spaces they can move to are highlighted. Clicking on a highlighted space moves the piece and ends the turn.
 
 ### Initial Gameboard
-<!-- ![initial game board](./readme-images/main.png) -->
+
 <img alt="initial-gameboard" src="./readme-images/main.png" width="400" height="400">
 
 ### Knight Move Options
-<!-- ![knight](./readme-images/knight.png) -->
+
 <img alt="knight" src="./readme-images/knight.png" width="400" height="400">
 
 
 ### Queen Move Options
-<!-- ![queen](./readme-images/queen.png) -->
+
 <img alt="queen" src="./readme-images/queen.png" width="400" height="400">
 
 
